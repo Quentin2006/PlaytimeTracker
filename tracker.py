@@ -6,7 +6,7 @@ game_names = ["GhostOfTsushima", "Hades"]   # List of game executable names (wit
 
 tracked_files = {game: f"{game}.txt" for game in game_names}
 
-increment_var = 10   # Time increment in seconds, the higher the # the better the performance 
+increment_var = 1   # Time increment in seconds, the higher the # the better the performance 
 
 def main():
     while True:
@@ -25,7 +25,6 @@ def get_running_games():
                 running_games.add(game)
     return running_games
 
-
 def update_playtime(game):
     file_name = tracked_files[game]
     
@@ -42,6 +41,4 @@ def update_playtime(game):
     # opens file in write mode to update play time
     with open(file_name, 'w') as file:
         file.write(str(playtime))
-
-if __name__ == "__main__":
-    main()
+    return playtime
