@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEST</title>
+    <title>Game Playtime Tracker</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <h1>In {{ game_name }}</h1>
-    <h1>You have {{ game_playtime }} seconds played.</h1>
-    <meta http-equiv="refresh" content="60"/>
+    <div id="gameList"></div> <!-- Container for game list -->
+    <div id="playtimeList"></div> <!-- Container for playtime list -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
+
 </html>

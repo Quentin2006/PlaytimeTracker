@@ -1,2 +1,0 @@
-
-running_tracker = False

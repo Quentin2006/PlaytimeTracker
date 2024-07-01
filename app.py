@@ -1,27 +1,29 @@
-from flask import Flask, render_template
-from tracker import main
+from flask import Flask, render_template, jsonify
+from tracker import main, get_game_list, get_playtime_list
 import threading
+import os
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
+    return render_template('index.html')
+    
+@app.route('/get_game_list')
+def fetch_game_list():
+    game_list = get_game_list()
+    return jsonify({'games': game_list})
 
-    game_name = 'GhostOfTsushima'
-    file_name = game_name + '.txt'
+@app.route('/get_playtime_list')
+def fetch_playtime_list():
+    playtime_list = get_playtime_list()
+    return jsonify({'playtimes': playtime_list})
 
-    # opens file in read mode to get contents of file
-    with open(file_name, 'r') as file:
-        content = int(file.read().strip())
-        playtime = content
+if __name__ == '__main__':
+    # Start the main tracking thread in a separate thread
+    tracking_thread = threading.Thread(target=main)
+    tracking_thread.start()
 
-    return render_template('index.html', game_name=game_name, game_playtime=playtime)
-
-if __name__ == "__main__":
-    # Start main in a separate thread
-    main_thread = threading.Thread(target=main)
-    main_thread.start()
-
-    # Run the Flask app
-    app.run(debug=True)
+    app.run()
     
