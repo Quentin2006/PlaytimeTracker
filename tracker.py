@@ -2,11 +2,11 @@ import time     # time.sleep()
 import psutil   # to check if the .exe is running
 import os
 
-game_names = ["GhostOfTsushima", "ForzaHorizon5", "Apex", "Minecraft"]   # List of game executable names (without .exe)
+game_names = ["GhostOfTsushima"]   # List of game executable names (without .exe)
 
 tracked_files = {game: f"{game}.txt" for game in game_names}
 
-increment_var = 1       # Time increment in seconds, the higher the # the better the performance 
+increment_var = 60       # Time increment in seconds, the higher the # the better the performance 
 
 def main():
     while True:             
@@ -66,6 +66,3 @@ def get_playtime_list():
             game_playtimes.append(content)
     return game_playtimes
 
-game_playtimes = get_playtime_list()
-
-print(game_playtimes)

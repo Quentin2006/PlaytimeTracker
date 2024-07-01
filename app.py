@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-from tracker import main, get_game_list, get_playtime_list
+from tracker import get_playtime_list, get_game_list, main
 import threading
 import os
 
@@ -21,9 +21,11 @@ def fetch_playtime_list():
     return jsonify({'playtimes': playtime_list})
 
 if __name__ == '__main__':
-    # Start the main tracking thread in a separate thread
-    tracking_thread = threading.Thread(target=main)
-    tracking_thread.start()
-
-    app.run()
+    # Check if running in the main process to avoid running the thread multiple times
+    if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
+        tracking_thread = threading.Thread(target=main)
+        tracking_thread.daemon = True
+        tracking_thread.start()
+    
+    app.run(debug=True)
     
