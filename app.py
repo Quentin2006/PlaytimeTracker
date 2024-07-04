@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-from tracker import get_playtime_list, get_game_list, main
+from tracker import get_playtime_list, get_game_list, get_delta_playtime_list, main
 import threading
 import os
 
@@ -9,16 +9,18 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
-    
-@app.route('/get_game_list')
-def fetch_game_list():
-    game_list = get_game_list()
-    return jsonify({'games': game_list})
 
-@app.route('/get_playtime_list')
-def fetch_playtime_list():
+@app.route('/game_info')
+def fetch_game_info():
+    game_list = get_game_list()
     playtime_list = get_playtime_list()
-    return jsonify({'playtimes': playtime_list})
+    delta_playtime_list = get_delta_playtime_list()
+    game_info = {
+        "games": game_list,
+        "playtimes": playtime_list,
+        "delta playtime": delta_playtime_list
+    }
+    return jsonify(game_info)
 
 if __name__ == '__main__':
     # Check if running in the main process to avoid running the thread multiple times

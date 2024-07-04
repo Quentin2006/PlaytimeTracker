@@ -3,13 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Playtime Tracker</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Game Time Tracker</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
 </head>
 <body>
-    <div id="gameList"></div> <!-- Container for game list -->
-    <div id="playtimeList"></div> <!-- Container for playtime list -->
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
+    <!-- Hero Section -->
+    <div class="game">
+        <div class="game__container">
 
+            <div class="game__item">
+                <div class="ghost-of-tsushima__img--container">
+                    <img class="game__img" src="../static/icon/Ghost of Tsushima DIRECTOR'S CUT.jpg" />
+                    <div class="game__playtime">Playtime: 5.5hrs</div>
+                    <div class="game__recent_playtime">Recently Played: 25mins</div>
+                </div>
+            </div>
+
+            <div class="game__item">
+                <div class="forza-horizon-5__img--container">
+                    <img class="game__img" src="../static/icon/Forza Horizon 5.jpg" />
+                    <div class="game__playtime">Playtime: 1.3hrs</div>
+                    <div class="game__recent_playtime">Recently Played: 0mins</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
 </html>

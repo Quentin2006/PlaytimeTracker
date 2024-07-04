@@ -1,12 +1,13 @@
 import time     # time.sleep()
 import psutil   # to check if the .exe is running
 import os
+from datetime import datetime
 
-game_names = ["GhostOfTsushima"]   # List of game executable names (without .exe)
+game_names = ["GhostOfTsushima", "ForzaHorizon5"]   # List of game executable names (without .exe)
 
 tracked_files = {game: f"{game}.txt" for game in game_names}
 
-increment_var = 60       # Time increment in seconds, the higher the # the better the performance 
+increment_var = 1       # Time increment in seconds, the higher the # the better the performance 
 
 def main():
     while True:             
@@ -14,6 +15,7 @@ def main():
         running_games = get_running_games()
         for game in running_games:
             update_playtime(game)
+            update_delta_playtime(game)
             print(f"{game} is running")
 
 # returns a list of running games
@@ -51,6 +53,33 @@ def update_playtime(game):
         file.write(str(playtime))
     return playtime
 
+# creates file holding playtime for the day 
+def update_delta_playtime(game):
+    # current date
+    today = datetime.today().strftime('%Y-%m-%d')
+
+    # Correct file path construction for today playtime
+    file_name = os.path.join('playtimes', 'delta_playtime', f"{game}_{today}.txt")
+
+    # if folder doesn't exist, folder is made
+    if not os.path.exists(os.path.join('playtimes', 'delta_playtime')):
+        os.makedirs(os.path.join('playtimes', 'delta_playtime'))
+        
+    # if file does not exist, it will create file and start at 0
+    if not os.path.exists(file_name):
+        with open(file_name, 'w') as file:
+            file.write('0')
+
+    # opens file in read mode to get contents of file
+    with open(file_name, 'r') as file:
+        content = int(file.read().strip())
+        delta_playtime = content + increment_var
+
+    # opens file in write mode to update play time
+    with open(file_name, 'w') as file:
+        file.write(str(delta_playtime))
+    return delta_playtime
+
 # used to retrieve game_names
 def get_game_list():
     return game_names
@@ -59,10 +88,25 @@ def get_game_list():
 def get_playtime_list():
     game_playtimes = []
     for game in game_names:
-        file_name = "./playtimes/" + game + ".txt"
+        file_name = os.path.join('playtimes', game + '.txt')
         # opens file in read mode to get contents of file
         with open(file_name, 'r') as file:
             content = int(file.read().strip())
             game_playtimes.append(content)
     return game_playtimes
 
+def get_delta_playtime_list():
+    today = datetime.today().strftime('%Y-%m-%d')
+
+    game_delta_playtime = []
+    
+    for game in game_names:
+        file_name = os.path.join('playtimes', 'delta_playtime', f"{game}_{today}.txt")
+        # Check if the file exists before trying to read it
+        if os.path.exists(file_name):
+            # opens file in read mode to get contents of file
+            with open(file_name, 'r') as file:
+                content = int(file.read().strip())
+                game_delta_playtime.append(content)
+
+    return game_delta_playtime
