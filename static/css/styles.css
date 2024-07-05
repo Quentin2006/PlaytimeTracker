@@ -22,15 +22,13 @@ body {
 .game__img {
     width: 375px;
     height: auto;
-    margin: 0;
-    padding: 0;
     transition: filter 0.3s ease, transform 0.3s ease; /* Transition for both filter and transform */
     position: relative; /* Needed for z-index stacking */
 }
 
 .game__img:hover {
-    filter: blur(0); /* Remove blur filter on hover */
     transform: scale(1.1); /* Scale up the image */
+    filter: blur(.5px); /* Blur effect */
     z-index: 1; /* Ensure the image is on top */
 }
 

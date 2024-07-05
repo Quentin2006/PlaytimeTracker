@@ -15,12 +15,17 @@ def fetch_game_info():
     game_list = get_game_list()
     playtime_list = get_playtime_list()
     delta_playtime_list = get_delta_playtime_list()
-    game_info = {
-        "games": game_list,
-        "playtimes": playtime_list,
-        "delta playtime": delta_playtime_list
-    }
-    return jsonify(game_info)
+
+    game_info = []
+
+    i=0
+    for i in range(len(game_list)):
+        game_info.append({
+                    "name": game_list[i],
+                    "playtime": playtime_list[i] if i < len(playtime_list) else "N/A",
+                    "recent_playtime": delta_playtime_list[i] if i < len(delta_playtime_list) else "N/A"
+                })
+    return jsonify({"games": game_info})
 
 if __name__ == '__main__':
     # Check if running in the main process to avoid running the thread multiple times
