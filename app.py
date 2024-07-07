@@ -1,5 +1,5 @@
-from flask import Flask, render_template, jsonify
-from tracker import get_playtime_list, get_game_list, get_delta_playtime_list, main
+from flask import Flask, render_template, jsonify, request
+from tracker import get_playtime_list, get_game_list, get_delta_playtime_list, get_last_played_list, main
 import threading
 import os
 
@@ -15,6 +15,7 @@ def fetch_game_info():
     game_list = get_game_list()
     playtime_list = get_playtime_list()
     delta_playtime_list = get_delta_playtime_list()
+    last_played_list = get_last_played_list()
 
     game_info = []
 
@@ -23,9 +24,12 @@ def fetch_game_info():
         game_info.append({
                     "name": game_list[i],
                     "playtime": playtime_list[i] if i < len(playtime_list) else "N/A",
-                    "recent_playtime": delta_playtime_list[i] if i < len(delta_playtime_list) else "N/A"
+                    "recent_playtime": delta_playtime_list[i] if i < len(delta_playtime_list) else "N/A",
+                    "last_played": last_played_list[i]
                 })
     return jsonify({"games": game_info})
+
+
 
 if __name__ == '__main__':
     # Check if running in the main process to avoid running the thread multiple times

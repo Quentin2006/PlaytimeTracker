@@ -1,13 +1,13 @@
 import time     # time.sleep()
 import psutil   # to check if the .exe is running
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
 game_names = ["GhostOfTsushima", "ForzaHorizon5"]   # List of game executable names (without .exe)
 
 tracked_files = {game: f"{game}.txt" for game in game_names}
 
-increment_var = 1       # Time increment in seconds, the higher the # the better the performance 
+increment_var = 60       # Time increment in seconds, the higher the # the better the performance 
 
 def main():
     while True:             
@@ -110,3 +110,47 @@ def get_delta_playtime_list():
                 game_delta_playtime.append(content)
 
     return game_delta_playtime
+
+def rfind(lst, element, start=None, end=None):
+    if start is None:
+        start = 0
+    if end is None:
+        end = len(lst)
+    for i in range(end-1, start-1, -1):
+        if lst[i] == element:
+            return i
+    return -1
+
+# WOW I AM STRUGGLING
+def get_last_played_list():
+    folder_path = "./playtimes/delta_playtime"
+    filenames = os.listdir(folder_path)
+
+    game_date = []
+    today_date = datetime.today()
+
+    for game in game_names:
+        found = False
+        i = 0
+        while not found and i < 365:  # Limit to checking up to 365 days ago
+            date = today_date - timedelta(days=i)
+            date_str = date.strftime('%Y-%m-%d')
+            filename_to_check = f"{game}_{date_str}.txt"
+
+            if filename_to_check in filenames:
+                game_date.append(filename_to_check)
+                found = True            
+            i += 1
+
+
+    game_date = [filename.split('_')[1].split('.')[0] for filename in game_date]
+
+    return game_date
+
+
+
+
+
+
+
+get_last_played_list()
