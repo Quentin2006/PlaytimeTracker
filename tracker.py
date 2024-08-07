@@ -3,7 +3,7 @@ import psutil   # to check if the .exe is running
 import os
 from datetime import datetime, timedelta
 
-game_names = ["GhostOfTsushima", "ForzaHorizon5"]   # List of game executable names (without .exe)
+game_names = ["GhostofTsushima", "ForzaHorizon5"]   # List of game executable names (without .exe)
 
 tracked_files = {game: f"{game}.txt" for game in game_names}
 
@@ -81,10 +81,6 @@ def update_delta_playtime(game):
     return delta_playtime
 
 # used to retrieve game_names
-def get_game_list():
-    return game_names
-
-# used to retrieve game_names
 def get_playtime_list():
     game_playtimes = []
     for game in game_names:
@@ -94,63 +90,3 @@ def get_playtime_list():
             content = int(file.read().strip())
             game_playtimes.append(content)
     return game_playtimes
-
-def get_delta_playtime_list():
-    today = datetime.today().strftime('%Y-%m-%d')
-
-    game_delta_playtime = []
-    
-    for game in game_names:
-        file_name = os.path.join('playtimes', 'delta_playtime', f"{game}_{today}.txt")
-        # Check if the file exists before trying to read it
-        if os.path.exists(file_name):
-            # opens file in read mode to get contents of file
-            with open(file_name, 'r') as file:
-                content = int(file.read().strip())
-                game_delta_playtime.append(content)
-
-    return game_delta_playtime
-
-def rfind(lst, element, start=None, end=None):
-    if start is None:
-        start = 0
-    if end is None:
-        end = len(lst)
-    for i in range(end-1, start-1, -1):
-        if lst[i] == element:
-            return i
-    return -1
-
-# WOW I AM STRUGGLING
-def get_last_played_list():
-    folder_path = "./playtimes/delta_playtime"
-    filenames = os.listdir(folder_path)
-
-    game_date = []
-    today_date = datetime.today()
-
-    for game in game_names:
-        found = False
-        i = 0
-        while not found and i < 365:  # Limit to checking up to 365 days ago
-            date = today_date - timedelta(days=i)
-            date_str = date.strftime('%Y-%m-%d')
-            filename_to_check = f"{game}_{date_str}.txt"
-
-            if filename_to_check in filenames:
-                game_date.append(filename_to_check)
-                found = True            
-            i += 1
-
-
-    game_date = [filename.split('_')[1].split('.')[0] for filename in game_date]
-
-    return game_date
-
-
-
-
-
-
-
-get_last_played_list()
