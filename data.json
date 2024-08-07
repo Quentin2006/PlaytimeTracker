@@ -1,0 +1,14 @@
+{
+  "game": [
+    {
+      "Name": "GhostofTsushima",
+      "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/library_600x900_2x.jpg",
+      "Playtime": 35280
+    },
+    {
+      "Name": "ForzaHorizon5",
+      "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/library_600x900_2x.jpg",
+      "Playtime": 1500
+    }
+  ]
+}
