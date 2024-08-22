@@ -6,3 +6,7 @@
     a. for each game in the json file create an img with the icon_url as the img
     b. add a little box under this img displaying time played today and the total playtime  
     c. make it look good (somthing like steam big picture mode)
+
+3. make this app an exe, and make it run only off of app.py
+
+4. make the app more performant

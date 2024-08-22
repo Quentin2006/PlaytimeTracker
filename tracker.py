@@ -7,7 +7,7 @@ game_names = ["GhostofTsushima", "ForzaHorizon5"]   # List of game executable na
 
 tracked_files = {game: f"{game}.txt" for game in game_names}
 
-increment_var = 60       # Time increment in seconds, the higher the # the better the performance 
+increment_var = 1       # Time increment in seconds, the higher the # the better the performance 
 
 def main():
     while True:             
