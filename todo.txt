@@ -9,4 +9,12 @@
 
 3. make this app an exe, and make it run only off of app.py
 
-4. make the app more performant
+4. make the app more performant and clean up code
+
+5. let user select .exe they want to add
+
+6. add some misc settings
+    a. allow user to change interval timer
+    b. allow user to change game picture
+    c. allow user to change game name
+    d. allow user to change playtime
