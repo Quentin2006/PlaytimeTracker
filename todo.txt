@@ -1,6 +1,6 @@
 1.  make delta_playtimes show up in json file. 
-    a. remove playtimes folder entirely
-    b. make tracker update playtimes and delta_playtimes directly in the json file
+    DONE a. remove playtimes folder entirely
+    DONE b. make tracker update playtimes and delta_playtimes directly in the json file
 
 2.  make webpage
     a. for each game in the json file create an img with the icon_url as the img

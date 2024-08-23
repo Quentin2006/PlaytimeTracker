@@ -1,22 +1,32 @@
 import time     # time.sleep()
 import psutil   # to check if the .exe is running
-import os
-from datetime import datetime, timedelta
+from datetime import datetime
+import json
+from secret import api_key
+from steam_web_api import Steam
 
-game_names = ["GhostofTsushima", "ForzaHorizon5"]   # List of game executable names (without .exe)
 
-tracked_files = {game: f"{game}.txt" for game in game_names}
+game_names = ["GhostOfTsushima", "steamwebhelper"]   # List of game executable names (without .exe)
 
-increment_var = 1       # Time increment in seconds, the higher the # the better the performance 
+
+INCREMENT_VAR = 1       # Time increment in seconds, the higher the # the better the performance 
 
 def main():
+    # updates game img url, only needed to run once at the start
+    # getURLs()
     while True:             
-        time.sleep(increment_var)
+        time.sleep(INCREMENT_VAR)
+        # retrives all current running game
         running_games = get_running_games()
-        for game in running_games:
-            update_playtime(game)
-            update_delta_playtime(game)
-            print(f"{game} is running")
+        for running_game in running_games:
+            # updates the running games playtime
+            update_playtime(running_game)
+            # updates the running games playtime today
+            update_delta_playtime(running_game)
+            # updates jsopn file
+            update_json(running_game)
+
+            print(f"{running_game} is running")
 
 # returns a list of running games
 def get_running_games():
@@ -30,63 +40,86 @@ def get_running_games():
 
 
 # creates, and updates file with playtime
-def update_playtime(game):
-    # Correct file path construction
-    file_name = os.path.join('playtimes', tracked_files[game])
+def update_playtime(running_game):
+    # Opens json file
+    json_file = open('data.json')
 
-    # if folder doesn't exist, folder is made
-    if not os.path.exists('playtimes'):
-        os.makedirs('playtimes')
+    # converts json file into a dict
+    data = json.load(json_file)
     
-    # if file does not exist, it will create file and start at 0
-    if not os.path.exists(file_name):
-        with open(file_name, 'w') as file:
-            file.write('0')
-
-    # opens file in read mode to get contents of file
-    with open(file_name, 'r') as file:
-        content = int(file.read().strip())
-        playtime = content + increment_var
-
-    # opens file in write mode to update play time
-    with open(file_name, 'w') as file:
-        file.write(str(playtime))
+    playtime = (int(data['Game'][game_names.index(running_game)]['Playtime']) + INCREMENT_VAR)
     return playtime
 
+
 # creates file holding playtime for the day 
-def update_delta_playtime(game):
+def update_delta_playtime(running_game):
     # current date
     today = datetime.today().strftime('%Y-%m-%d')
 
-    # Correct file path construction for today playtime
-    file_name = os.path.join('playtimes', 'delta_playtime', f"{game}_{today}.txt")
+    # Opens json file
+    json_file = open('data.json')
 
-    # if folder doesn't exist, folder is made
-    if not os.path.exists(os.path.join('playtimes', 'delta_playtime')):
-        os.makedirs(os.path.join('playtimes', 'delta_playtime'))
-        
-    # if file does not exist, it will create file and start at 0
-    if not os.path.exists(file_name):
-        with open(file_name, 'w') as file:
-            file.write('0')
+    # converts json file into a dict
+    data = json.load(json_file)
 
-    # opens file in read mode to get contents of file
-    with open(file_name, 'r') as file:
-        content = int(file.read().strip())
-        delta_playtime = content + increment_var
+    if not today in data['Game'][game_names.index(running_game)]:
+        delta_playtime = 0
+        delta_playtime = INCREMENT_VAR + delta_playtime
 
-    # opens file in write mode to update play time
-    with open(file_name, 'w') as file:
-        file.write(str(delta_playtime))
+    else:
+        delta_playtime = data['Game'][game_names.index(running_game)][today]
+        delta_playtime = INCREMENT_VAR + delta_playtime
+
+    
+ 
+    print(delta_playtime)
+
     return delta_playtime
 
-# used to retrieve game_names
-def get_playtime_list():
-    game_playtimes = []
+
+# gets urls for game img
+def getURLs(game):
+    steam = Steam(api_key)
+    imgURLs = []
     for game in game_names:
-        file_name = os.path.join('playtimes', game + '.txt')
-        # opens file in read mode to get contents of file
-        with open(file_name, 'r') as file:
-            content = int(file.read().strip())
-            game_playtimes.append(content)
-    return game_playtimes
+        output = steam.apps.search_games(game)
+        id = output["apps"][0]["id"][0]
+        imgURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + str(id) + "/library_600x900_2x.jpg"
+        imgURLs.append(imgURL)
+    
+    return(imgURLs)
+
+# updates json responsable for storing all playtime data
+# arguments passes 
+def update_json(running_game):
+    # Opens json file
+    json_file = open('data.json')
+
+    # converts json file into a dict
+    data = json.load(json_file)
+
+    index = game_names.index(running_game)
+
+    if not data['Game'][index]['Name']:
+        data['Game'][index]['Name'] = running_game
+        with open('data.json', 'w') as file:
+            json.dump(data, file, indent=2)
+
+    if not data['Game'][index]['IconURL']:
+        data['Game'][index]['IconURL'] = getURLs(running_game)[index]
+        with open('data.json', 'w') as file:    
+            json.dump(data, file, indent=2)
+
+    
+    data['Game'][index]['Playtime'] = update_playtime(running_game)
+    with open('data.json', 'w') as file:
+        json.dump(data, file, indent=2)
+
+    # current date
+    today = datetime.today().strftime('%Y-%m-%d')
+    
+    data['Game'][index][today] = update_delta_playtime(running_game)
+    with open('data.json', 'w') as file:
+        json.dump(data, file, indent=2)
+
+main()
