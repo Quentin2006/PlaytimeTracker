@@ -3,7 +3,7 @@
     DONE b. make tracker update playtimes and delta_playtimes directly in the json file
 
 2.  make webpage
-    a. for each game in the json file create an img with the icon_url as the img
+    DONE a. for each game in the json file create an img with the icon_url as the img
     b. add a little box under this img displaying time played today and the total playtime  
     c. make it look good (somthing like steam big picture mode)
 
