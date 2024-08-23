@@ -6,10 +6,10 @@ from secret import api_key
 from steam_web_api import Steam
 
 
-game_names = ["GhostOfTsushima", "steamwebhelper"]   # List of game executable names (without .exe)
+game_names = ["GhostOfTsushima"]   # List of game executable names (without .exe)
 
 
-INCREMENT_VAR = 1       # Time increment in seconds, the higher the # the better the performance 
+INCREMENT_VAR = 60       # Time increment in seconds, the higher the # the better the performance 
 
 def main():
     # updates game img url, only needed to run once at the start
@@ -25,8 +25,6 @@ def main():
             update_delta_playtime(running_game)
             # updates jsopn file
             update_json(running_game)
-
-            print(f"{running_game} is running")
 
 # returns a list of running games
 def get_running_games():
@@ -71,8 +69,6 @@ def update_delta_playtime(running_game):
         delta_playtime = INCREMENT_VAR + delta_playtime
 
     
- 
-    print(delta_playtime)
 
     return delta_playtime
 
