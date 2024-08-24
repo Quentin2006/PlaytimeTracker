@@ -7,6 +7,21 @@
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
+    <div class="settings-icon">
+      <img onclick="on()" src="./icons/cog.png" />
+    </div>
+
+    <div id="overlay">
+      <div class="header">
+        <div class="title">Settings</div>
+        <img onclick="off()" src="../icons/back.png" />
+      </div>
+
+      <div class="add-game">Select the .exe of the game you want to add</div>
+
+      <div class="remove-game">Select the game you want to remove</div>
+    </div>
+
     <div class="game-container"></div>
 
     <script src="./index.js"></script>
