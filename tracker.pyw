@@ -6,7 +6,7 @@ from secret import api_key
 from steam_web_api import Steam
 
 
-game_names = ["GhostOfTsushima", "Minecraft"]   # List of game executable names (without .exe)
+game_names = ["GhostOfTsushima", "Animal Well"]   # List of game executable names (without .exe)
 
 
 INCREMENT_VAR = 1       # Time increment in seconds, the higher the # the better the performance 
