@@ -6,25 +6,23 @@ from secret import api_key
 from steam_web_api import Steam
 
 
-game_names = ["GhostOfTsushima"]   # List of game executable names (without .exe)
+game_names = ["GhostOfTsushima", "Minecraft"]   # List of game executable names (without .exe)
 
 
-INCREMENT_VAR = 60       # Time increment in seconds, the higher the # the better the performance 
+INCREMENT_VAR = 1       # Time increment in seconds, the higher the # the better the performance 
 
 def main():
     # updates game img url, only needed to run once at the start
-    # getURLs()
     while True:             
         time.sleep(INCREMENT_VAR)
         # retrives all current running game
         running_games = get_running_games()
         for running_game in running_games:
-            # updates the running games playtime
-            update_playtime(running_game)
-            # updates the running games playtime today
-            update_delta_playtime(running_game)
-            # updates jsopn file
+            # checks if json game data is there
+            create_json(running_game)
+            # updates json file
             update_json(running_game)
+            
 
 # returns a list of running games
 def get_running_games():
@@ -86,7 +84,6 @@ def getURLs(game):
     return(imgURLs)
 
 # updates json responsable for storing all playtime data
-# arguments passes 
 def update_json(running_game):
     # Opens json file
     json_file = open('data.json')
@@ -117,5 +114,26 @@ def update_json(running_game):
     data['Game'][index][today] = update_delta_playtime(running_game)
     with open('data.json', 'w') as file:
         json.dump(data, file, indent=2)
+
+# if there is no json in file then it makes json entry for game
+def create_json(running_game):
+    # Opens json file
+    json_file = open('data.json')
+
+    # converts json file into a dict
+    data = json.load(json_file)
+
+    index = game_names.index(running_game)
+
+    if index >= len(data['Game']):
+        newData = {
+            "Name": running_game,
+            "IconURL": "",
+            "Playtime": 0
+        }
+        data['Game'].append(newData)
+    with open('data.json', 'w') as file:
+        json.dump(data, file, indent=2)
+
 
 main()
