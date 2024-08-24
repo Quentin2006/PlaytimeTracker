@@ -1,8 +1,8 @@
+// Fetch the JSON file and handle the response
 fetch("./data.json")
   .then((response) => response.json())
   .then((data) => {
-    // Do something with the JavaScript object
-    console.log(data);
+    console.log(data); // Debugging purpose
     createImgs(data);
     showData(data);
   })
@@ -10,39 +10,56 @@ fetch("./data.json")
     console.error("Error fetching or parsing JSON:", error);
   });
 
-// creates game icons
+// Function to create game icons
 function createImgs(data) {
-  const container = document.querySelector(".game-img-container");
+  const mainContainer = document.querySelector(".game-container");
 
-  for (let i = 0; i < data["Game"].length; i++) {
+  // Loop through each game in the JSON data
+  data["Game"].forEach((game) => {
+    // Sanitize class names (replace spaces with hyphens)
+    const className = game["Name"].replace(/\s+/g, "-");
+
+    const gameContainer = document.createElement("div");
+    gameContainer.className = className;
+
     const content = document.createElement("img");
-    content.src = data["Game"][i]["IconURL"];
+    content.src = game["IconURL"];
 
-    container.appendChild(content);
-  }
+    gameContainer.appendChild(content);
+    mainContainer.appendChild(gameContainer);
+  });
 }
+
+// Function to show additional game data like playtime
 function showData(data) {
-  const container = document.querySelector(".game-data-container");
+  const container = document.querySelector(".game-container");
 
-  for (let i = 0; i < data["Game"].length; i++) {
-    // shows playtime
-    const playtime = document.createElement("div");
-    playtime.textContent = data["Game"][i]["Playtime"];
-    container.appendChild(playtime);
+  data["Game"].forEach((game) => {
+    const className = "." + game["Name"].replace(/\s+/g, "-");
+    const gameContainer = document.querySelector(className);
 
-    // shows recent playtime
-    const currentDate = new Date();
-    const formattedDate =
-      currentDate.getFullYear() +
-      "-" +
-      String(currentDate.getMonth() + 1).padStart(2, "0") +
-      "-" +
-      String(currentDate.getDate()).padStart(2, "0");
+    if (gameContainer) {
+      const gameInfoContainer = document.createElement("div");
+      gameInfoContainer.className = "gameInfoContainer";
 
-    const recentPlaytime = document.createElement("div");
-    if (formattedDate in data["Game"][i]) {
-      recentPlaytime.textContent = data["Game"][i][formattedDate];
-    } else recentPlaytime.textContent = "You havent played today";
-    container.appendChild(recentPlaytime);
-  }
+      const playtime = document.createElement("div");
+      playtime.textContent = `Total Playtime: ${(
+        game["Playtime"] / 3600
+      ).toFixed(1)} hrs`;
+      gameInfoContainer.appendChild(playtime);
+
+      const currentDate = new Date().toISOString().split("T")[0]; // Format: YYYY-MM-DD
+
+      const recentPlaytime = document.createElement("div");
+      recentPlaytime.textContent =
+        currentDate in game
+          ? `Total Playtime Today: ${(game[currentDate] / 60).toFixed(0)} mins`
+          : "You haven't played today";
+
+      gameInfoContainer.appendChild(recentPlaytime);
+      gameContainer.appendChild(gameInfoContainer);
+    } else {
+      console.error(`Could not find element with class: ${className}`);
+    }
+  });
 }
