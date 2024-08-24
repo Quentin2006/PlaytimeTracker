@@ -4,8 +4,8 @@
 
 2.  make webpage
     DONE a. for each game in the json file create an img with the icon_url as the img
-    b. add a little box under this img displaying time played today and the total playtime  
-    c. make it look good (somthing like steam big picture mode)
+    DONE b. add a little box under this img displaying time played today and the total playtime  
+    DONE c. make it look good (somthing like steam big picture mode)
 
 3. DONE make the app more performant and clean up code
 
