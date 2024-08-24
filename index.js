@@ -8,7 +8,7 @@ fetch("./data.json")
   })
   .catch((error) => {
     console.error("Error fetching or parsing JSON:", error);
-  });
+  }); 
 
 // Function to create game icons
 function createImgs(data) {
