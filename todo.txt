@@ -7,14 +7,14 @@
     b. add a little box under this img displaying time played today and the total playtime  
     c. make it look good (somthing like steam big picture mode)
 
-3. make this app an exe, and make it run only off of app.py
+3. DONE make the app more performant and clean up code
 
-4. make the app more performant and clean up code
+4. DONE auto create keys in data.json audomaticly
 
 5. let user select .exe they want to add
 
 6. add some misc settings
-    a. allow user to change interval timer
-    b. allow user to change game picture
-    c. allow user to change game name
-    d. allow user to change playtime
+    a. allow user to change game picture
+    b. allow user to change game name
+    c. allow user to change playtime
+    d. allow user to edit game entrys
