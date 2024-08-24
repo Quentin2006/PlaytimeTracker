@@ -1,8 +1,10 @@
+/* main page */
 body {
   background-color: black;
   margin: 0px;
   padding: 0px;
   font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
 }
 
 .game-container {
@@ -14,7 +16,7 @@ body {
   margin: 1em;
 }
 
-img {
+.game-container img {
   width: 500px;
   height: auto;
   border: none;
@@ -23,14 +25,14 @@ img {
   transition: 0.05s;
 }
 
-img:hover {
+.game-container img:hover {
   transform: scale(1.025);
-  filter: blur(.5px)  contrast(105%);
+  filter: blur(0.5px) contrast(105%);
   backdrop-filter: blur(10px);
 }
 
 .game-container div {
-  background-color:#0A0F15;
+  background-color: #0a0f15;
   color: white;
   border: none;
   border-radius: 30px;
@@ -48,4 +50,55 @@ img:hover {
   color: black;
   border: none;
   border-radius: 30px;
+}
+
+.settings-icon {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.settings-icon img {
+  margin: 10px;
+  width: 40px;
+  height: auto;
+}
+.settings-icon img:hover {
+  transform: scale(1.1);
+}
+
+/* settings page */
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  color: white;
+
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+
+  font-size: 30px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 50px;
+}
+
+.header img {
+  margin: 10px;
+  width: 40px;
+  height: auto;
+  filter: invert(1);
+}
+
+.header img:hover {
+  transform: scale(1.1);
 }
