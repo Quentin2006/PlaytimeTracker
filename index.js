@@ -8,7 +8,7 @@ fetch("./data.json")
   })
   .catch((error) => {
     console.error("Error fetching or parsing JSON:", error);
-  }); 
+  });
 
 // Function to create game icons
 function createImgs(data) {
@@ -62,4 +62,12 @@ function showData(data) {
       console.error(`Could not find element with class: ${className}`);
     }
   });
+}
+
+function on() {
+  document.getElementById("overlay").style.display = "flex";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
 }
