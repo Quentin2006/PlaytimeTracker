@@ -18,3 +18,5 @@
     b. allow user to change game name
     c. allow user to change playtime
     d. allow user to edit game entrys
+
+7. use electron to make it a desktop app
