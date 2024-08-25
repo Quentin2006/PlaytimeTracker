@@ -32,8 +32,6 @@ function createImgs(data) {
 
 // Function to show additional game data like playtime
 function showData(data) {
-  const container = document.querySelector(".game-container");
-
   data["Game"].forEach((game) => {
     const className = "." + game["Name"].replace(/\s+/g, "-");
     const gameContainer = document.querySelector(className);
@@ -48,13 +46,23 @@ function showData(data) {
       ).toFixed(1)} hrs`;
       gameInfoContainer.appendChild(playtime);
 
-      const currentDate = new Date().toISOString().split("T")[0]; // Format: YYYY-MM-DD
+      const currentDate = new Date();
+      const formattedDate =
+        currentDate.getFullYear() +
+        "-" +
+        String(currentDate.getMonth() + 1).padStart(2, "0") +
+        "-" +
+        String(currentDate.getDate()).padStart(2, "0");
 
       const recentPlaytime = document.createElement("div");
       recentPlaytime.textContent =
-        currentDate in game
-          ? `Total Playtime Today: ${(game[currentDate] / 60).toFixed(0)} mins`
+        formattedDate in game
+          ? `Total Playtime Today: ${(game[formattedDate] / 60).toFixed(
+              0
+            )} mins`
           : "You haven't played today";
+
+      console.log("Recent Playtime Text:", recentPlaytime.textContent);
 
       gameInfoContainer.appendChild(recentPlaytime);
       gameContainer.appendChild(gameInfoContainer);
