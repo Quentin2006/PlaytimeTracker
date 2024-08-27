@@ -1,10 +1,17 @@
 // Fetch the JSON file and handle the response
+
+addInput = document.querySelector("#add-game");
+
 fetch("./data.json")
   .then((response) => response.json())
   .then((data) => {
     console.log(data); // Debugging purpose
     createImgs(data);
     showData(data);
+
+    addInput.addEventListener("input", () => {
+      addGame();
+    });
   })
   .catch((error) => {
     console.error("Error fetching or parsing JSON:", error);
@@ -62,8 +69,6 @@ function showData(data) {
             )} mins`
           : "You haven't played today";
 
-      console.log("Recent Playtime Text:", recentPlaytime.textContent);
-
       gameInfoContainer.appendChild(recentPlaytime);
       gameContainer.appendChild(gameInfoContainer);
     } else {
@@ -80,21 +85,4 @@ function off() {
   document.getElementById("overlay").style.display = "none";
 }
 
-function removeGame() {
-  document
-    .getElementById("add-game")
-    .addEventListener("change", function (event) {
-      const file = event.target.files[0]; // Get the first file
-
-      // Check if a file is selected
-      if (file) {
-        fileName = file.name; // Display the file name
-        return fileName;
-      } else {
-        fileName = "No file selected";
-        return fileName;
-      }
-    });
-}
-
-console.log(removeGame());
+import { addGame } from "./server.js";
