@@ -135,5 +135,4 @@ def create_json(running_game):
     with open('data.json', 'w') as file:
         json.dump(data, file, indent=2)
 
-
 main()
