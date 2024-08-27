@@ -73,9 +73,28 @@ function showData(data) {
 }
 
 function on() {
-  document.getElementById("overlay").style.display = "flex";
+  document.getElementById("overlay").style.display = "block";
 }
 
 function off() {
   document.getElementById("overlay").style.display = "none";
 }
+
+function removeGame() {
+  document
+    .getElementById("add-game")
+    .addEventListener("change", function (event) {
+      const file = event.target.files[0]; // Get the first file
+
+      // Check if a file is selected
+      if (file) {
+        fileName = file.name; // Display the file name
+        return fileName;
+      } else {
+        fileName = "No file selected";
+        return fileName;
+      }
+    });
+}
+
+console.log(removeGame());
