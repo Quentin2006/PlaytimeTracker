@@ -10,7 +10,7 @@ fetch("./data.json")
     showData(data);
 
     addInput.addEventListener("input", () => {
-      addGame();
+      addGame(data);
     });
   })
   .catch((error) => {
@@ -85,3 +85,28 @@ function off() {
   document.getElementById("overlay").style.display = "none";
 }
 
+function addGame(data) {
+  let fileName = document.getElementById("add-game").files[0].name;
+  fileName = fileName.replace(".exe", "");
+  let alreadyGame = false;
+
+  data["Game"].forEach((game) => {
+    if (fileName == game["Name"]) alreadyGame = true;
+    console.log(fileName);
+  });
+
+  if (alreadyGame) {
+    alert("Game already incuded");
+  } else {
+    let newData = {
+      Name: fileName,
+    };
+    data.Game.push(newData);
+
+    let fileToSave = new Blob([JSON.stringify(data)], {
+      type: "application/json",
+    });
+    //  not a fan of this
+    saveAs(fileToSave, "data.json");
+  }
+}
