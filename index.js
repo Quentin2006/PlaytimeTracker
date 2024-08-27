@@ -85,4 +85,3 @@ function off() {
   document.getElementById("overlay").style.display = "none";
 }
 
-import { addGame } from "./server.js";
