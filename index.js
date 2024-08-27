@@ -100,13 +100,15 @@ function addGame(data) {
   } else {
     let newData = {
       Name: fileName,
+      IconURL: "",
+      Playtime: 0,
     };
     data.Game.push(newData);
 
     let fileToSave = new Blob([JSON.stringify(data)], {
       type: "application/json",
     });
-    //  not a fan of this
+    // not a fan of this
     saveAs(fileToSave, "data.json");
   }
 }
