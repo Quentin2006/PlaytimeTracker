@@ -24,8 +24,6 @@ def getGameNames():
 
 game_names = getGameNames()
 
-
-
 def main():
     global game_names
     # updates game img url, only needed to run once at the start
