@@ -5,16 +5,33 @@ import json
 from secret import api_key
 from steam_web_api import Steam
 
-
-game_names = ["GhostOfTsushima"]   # List of game executable names (without .exe)
-
-
 INCREMENT_VAR = 1       # Time increment in seconds, the higher the # the better the performance 
 
+def getGameNames():
+    # Load the JSON data from the file
+    with open("data.json", 'r') as file:
+        data = json.load(file)
+
+    # Initialize an empty list to store game names
+    game_names = []
+
+    # Iterate through each game in the JSON data and add the game name to the list
+    for game in data['Game']:
+        game_names.append(game['Name'])
+
+    return game_names
+
+
+game_names = getGameNames()
+
+
+
 def main():
+    global game_names
     # updates game img url, only needed to run once at the start
     while True:             
         time.sleep(INCREMENT_VAR)
+        game_names = getGameNames()
         # retrives all current running game
         running_games = get_running_games()
         for running_game in running_games:
@@ -23,7 +40,6 @@ def main():
             # updates json file
             update_json(running_game)
             
-
 # returns a list of running games
 def get_running_games():
     running_games = set()
@@ -33,7 +49,6 @@ def get_running_games():
             if process_name == game + ".exe":
                 running_games.add(game)
     return running_games
-
 
 # creates, and updates file with playtime
 def update_playtime(running_game):
@@ -75,13 +90,16 @@ def update_delta_playtime(running_game):
 def getURLs(game):
     steam = Steam(api_key)
     imgURLs = []
-    for game in game_names:
-        output = steam.apps.search_games(game)
-        id = output["apps"][0]["id"][0]
-        imgURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + str(id) + "/library_600x900_2x.jpg"
-        imgURLs.append(imgURL)
+    try:
+        for game in game_names:
+            output = steam.apps.search_games(game)
+            id = output["apps"][0]["id"][0]
+            imgURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + str(id) + "/library_600x900_2x.jpg"
+            imgURLs.append(imgURL)
+        return(imgURLs)
+    except:
+        return "None"
     
-    return(imgURLs)
 
 # updates json responsable for storing all playtime data
 def update_json(running_game):
