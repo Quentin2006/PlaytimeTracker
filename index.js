@@ -1,7 +1,5 @@
 // Fetch the JSON file and handle the response
 
-addInput = document.querySelector("#add-game");
-
 fetch("./data.json")
   .then((response) => response.json())
   .then((data) => {
@@ -9,8 +7,11 @@ fetch("./data.json")
     createImgs(data);
     showData(data);
 
-    addInput.addEventListener("input", () => {
+    document.querySelector("#add-game").addEventListener("input", () => {
       addGame(data);
+    });
+    document.querySelector("#remove-game").addEventListener("input", () => {
+      removeGame(data);
     });
   })
   .catch((error) => {
@@ -88,14 +89,14 @@ function off() {
 function addGame(data) {
   let fileName = document.getElementById("add-game").files[0].name;
   fileName = fileName.replace(".exe", "");
-  let alreadyGame = false;
+  let existingGame = false;
 
   data["Game"].forEach((game) => {
-    if (fileName == game["Name"]) alreadyGame = true;
+    if (fileName == game["Name"]) existingGame = true;
     console.log(fileName);
   });
 
-  if (alreadyGame) {
+  if (existingGame) {
     alert("Game already incuded");
   } else {
     let newData = {
@@ -105,6 +106,32 @@ function addGame(data) {
     };
     data.Game.push(newData);
 
+    let fileToSave = new Blob([JSON.stringify(data)], {
+      type: "application/json",
+    });
+    // not a fan of this
+    saveAs(fileToSave, "data.json");
+  }
+}
+function removeGame(data) {
+  let fileName = document.getElementById("remove-game").files[0].name;
+  fileName = fileName.replace(".exe", "");
+  let existingGame = false;
+
+  data["Game"].forEach((game) => {
+    if (fileName == game["Name"]) existingGame = true;
+    console.log(fileName);
+  });
+
+  if (!existingGame) {
+    alert("Game was never added");
+  } else {
+    // Find the index of the game with the specified name
+    let gameIndex = data.Game.findIndex((game) => game.Name === fileName);
+
+    data.Game.splice(gameIndex, 1);
+    console.log(`${fileName} has been removed.`);
+    
     let fileToSave = new Blob([JSON.stringify(data)], {
       type: "application/json",
     });
