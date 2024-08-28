@@ -1,8 +1,8 @@
-1.  make delta_playtimes show up in json file. 
+1.  DONE make delta_playtimes show up in json file. 
     DONE a. remove playtimes folder entirely
     DONE b. make tracker update playtimes and delta_playtimes directly in the json file
 
-2.  make webpage
+2.  DONE make webpage
     DONE a. for each game in the json file create an img with the icon_url as the img
     DONE b. add a little box under this img displaying time played today and the total playtime  
     DONE c. make it look good (somthing like steam big picture mode)
@@ -13,11 +13,11 @@
 
 5. add some misc settings
     a. allow user to change game icon
-    b. allow user to change game name
+    b. allow user to change game display name
     c. allow user to change playtime
     d. allow user to remove games
-    e. allow user to select .exe they want to add
+    e. DONE allow user to select .exe they want to add
 
-6. Figure out how to make an overlay instead of linking to another page
+6. DONE Figure out how to make an overlay instead of linking to another page
 
 7. use electron to make it a desktop app
