@@ -130,7 +130,8 @@ body {
 }
 
 .add-game,
-.remove-game {
+.remove-game,
+.change-playtime {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,12 +142,14 @@ body {
 }
 
 .add-game *,
-.remove-game * {
+.remove-game *,
+.change-playtime * {
   cursor: pointer;
 }
 
 .add-game:hover,
-.remove-game:hover {
+.remove-game:hover,
+.change-playtime:hover {
   background-color: #1b28389f;
 }
 
