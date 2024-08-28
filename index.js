@@ -16,6 +16,9 @@ fetch("./data.json")
     document.querySelector("#change-playtime").addEventListener("input", () => {
       changePlaytime(data);
     });
+    document.querySelector("#change-icon").addEventListener("input", () => {
+      changeIcon(data);
+    });
   })
   .catch((error) => {
     console.error("Error fetching or parsing JSON:", error);
@@ -160,6 +163,35 @@ function changePlaytime(data) {
     let newPlaytime = prompt("How many hours do you have?") * 60 * 60;
 
     data["Game"][gameIndex]["Playtime"] = newPlaytime;
+
+    let fileToSave = new Blob([JSON.stringify(data)], {
+      type: "application/json",
+    });
+
+    // not a fan of this
+    saveAs(fileToSave, "data.json");
+  }
+}
+
+function changeIcon(data) {
+  let fileName = document.getElementById("change-icon").files[0].name;
+  fileName = fileName.replace(".exe", "");
+  let existingGame = false;
+
+  data["Game"].forEach((game) => {
+    if (fileName == game["Name"]) existingGame = true;
+    console.log(fileName);
+  });
+
+  if (!existingGame) {
+    alert("Need to add game to change playtime");
+  } else {
+    // Find the index of the game with the specified name
+    let gameIndex = data.Game.findIndex((game) => game.Name === fileName);
+
+    let newIconURL = prompt("What is the img url?");
+
+    data["Game"][gameIndex]["IconURL"] = newIconURL;
 
     let fileToSave = new Blob([JSON.stringify(data)], {
       type: "application/json",
