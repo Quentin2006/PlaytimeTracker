@@ -48,6 +48,7 @@ def get_running_games():
                 running_games.add(game)
     return running_games
 
+
 # creates, and updates file with playtime
 def update_playtime(running_game):
     # Opens json file
@@ -152,3 +153,4 @@ def create_json(running_game):
         json.dump(data, file, indent=2)
 
 main()
+        

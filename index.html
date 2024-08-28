@@ -19,16 +19,30 @@
         </div>
 
         <div class="content">
+          <div class="info">
+            You will be promped to save a json file. What you want to do is go
+            to the install location and replace it with the previous data.json
+          </div>
+
           <div class="add-game">
-            <label for="add-game"> Select .exe to add game </label>
+            <label for="add-game"> Select .exe to add </label>
             <input type="file" name="file" id="add-game" accept=".exe" />
           </div>
           <div class="remove-game">
             <label for="remove-game">
-              Select the game you want to remove
+              Select .exe to remove
+              <div class="warning" style="color: maroon">
+                WARNING: THIS WILL REMOVE ALL PLAYTIME PERMANENTLY
+              </div>
             </label>
-            <input type="file" name="file" id="remove-game" />
+            <input type="file" name="file" id="remove-game" accept=".exe" />
           </div>
+
+          <div class="change-playtime">
+            <label for="add-game"> Select .exe to add </label>
+            <input type="file" name="file" id="add-game" accept=".exe" />
+          </div>
+
         </div>
       </div>
     </div>
