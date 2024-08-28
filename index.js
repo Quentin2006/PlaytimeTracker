@@ -13,6 +13,9 @@ fetch("./data.json")
     document.querySelector("#remove-game").addEventListener("input", () => {
       removeGame(data);
     });
+    document.querySelector("#change-playtime").addEventListener("input", () => {
+      changePlaytime(data);
+    });
   })
   .catch((error) => {
     console.error("Error fetching or parsing JSON:", error);
@@ -130,11 +133,38 @@ function removeGame(data) {
     let gameIndex = data.Game.findIndex((game) => game.Name === fileName);
 
     data.Game.splice(gameIndex, 1);
-    console.log(`${fileName} has been removed.`);
-    
+
     let fileToSave = new Blob([JSON.stringify(data)], {
       type: "application/json",
     });
+    // not a fan of this
+    saveAs(fileToSave, "data.json");
+  }
+}
+function changePlaytime(data) {
+  let fileName = document.getElementById("change-playtime").files[0].name;
+  fileName = fileName.replace(".exe", "");
+  let existingGame = false;
+
+  data["Game"].forEach((game) => {
+    if (fileName == game["Name"]) existingGame = true;
+    console.log(fileName);
+  });
+
+  if (!existingGame) {
+    alert("Need to add game to change playtime");
+  } else {
+    // Find the index of the game with the specified name
+    let gameIndex = data.Game.findIndex((game) => game.Name === fileName);
+
+    let newPlaytime = prompt("How many hours do you have?") * 60 * 60;
+
+    data["Game"][gameIndex]["Playtime"] = newPlaytime;
+
+    let fileToSave = new Blob([JSON.stringify(data)], {
+      type: "application/json",
+    });
+
     // not a fan of this
     saveAs(fileToSave, "data.json");
   }
