@@ -32,6 +32,10 @@ body {
 }
 
 .game-container div {
+  display: flex;
+  flex-flow: wrap column;
+  align-items: center;
+  justify-content: center;
   background-color: #0a0f15;
   color: white;
   border: none;
@@ -89,7 +93,7 @@ body {
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 
-  background-color: #1b2838;
+  background-color: #0a0f15d3;
   border-radius: 50px;
   padding: 50px;
 }
@@ -98,7 +102,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 100px;
+  font-size: 80px;
 }
 
 .header img {
@@ -118,8 +122,34 @@ body {
   align-items: center;
   justify-content: flex-start;
   flex-flow: column wrap;
+
   padding: 50px;
   gap: 50px;
   font-weight: 200;
-  font-size: 40px;
+  font-size: 30px;
+}
+
+.add-game,
+.remove-game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+  background-color: #1b283849;
+  border-radius: 50px;
+}
+
+.add-game *,
+.remove-game * {
+  cursor: pointer;
+}
+
+.add-game:hover,
+.remove-game:hover {
+  background-color: #1b28389f;
+}
+
+input[type="file"]::file-selector-button {
+  visibility: hidden;
 }
