@@ -6,18 +6,42 @@ fetch("http://127.0.0.1:5000/data-json", { method: "GET" })
     createImgs(data);
     showData(data);
 
-    document.querySelector("#add-game").addEventListener("input", () => {
-      addGame(data);
-    });
-    document.querySelector("#remove-game").addEventListener("input", () => {
-      removeGame(data);
-    });
-    document.querySelector("#change-playtime").addEventListener("input", () => {
-      changePlaytime(data);
-    });
-    document.querySelector("#change-icon").addEventListener("input", () => {
-      changeIcon(data);
-    });
+    // checks if settings page should be launched
+    document
+      .querySelector(".game-container")
+      .addEventListener("click", (event) => {
+        if (event.target.tagName.toLowerCase() === "img") {
+          // Get the immediate parent of the clicked image (the child of the .game-container)
+          let immediateParent = event.target.parentElement;
+
+          let gameSelected = immediateParent.className;
+
+          console.log(
+            "Clicked on a grandchild image. Immediate parent class name:" +
+              gameSelected
+          );
+
+          // truns on settings page
+          on();
+
+          // all settings to check for
+          document
+            .querySelector(".remove-game")
+            .addEventListener("click", () => {
+              removeGame(data, gameSelected);
+            });
+          document
+            .querySelector("#change-playtime")
+            .addEventListener("click", () => {
+              changePlaytime(data, gameSelected);
+            });
+          document
+            .querySelector("#change-icon")
+            .addEventListener("click", () => {
+              changeIcon(data, gameSelected);
+            });
+        }
+      });
   })
   .catch((error) => {
     console.error("Error fetching or parsing JSON:", error);
@@ -132,71 +156,33 @@ function addGame(data) {
     postData(data);
   }
 }
-function removeGame(data) {
-  let fileName = document.getElementById("remove-game").files[0].name;
-  fileName = fileName.replace(".exe", "");
-  let existingGame = false;
+function removeGame(data, gameName) {
+  // Find the index of the game with the specified name
+  let gameIndex = data.Game.findIndex((game) => game.Name === gameName);
 
-  data["Game"].forEach((game) => {
-    if (fileName == game["Name"]) existingGame = true;
-    console.log(fileName);
-  });
+  data.Game.splice(gameIndex, 1);
 
-  if (!existingGame) {
-    alert("Game was never added");
-  } else {
-    // Find the index of the game with the specified name
-    let gameIndex = data.Game.findIndex((game) => game.Name === fileName);
-
-    data.Game.splice(gameIndex, 1);
-
-    postData(data);
-  }
-}
-function changePlaytime(data) {
-  let fileName = document.getElementById("change-playtime").files[0].name;
-  fileName = fileName.replace(".exe", "");
-  let existingGame = false;
-
-  data["Game"].forEach((game) => {
-    if (fileName == game["Name"]) existingGame = true;
-    console.log(fileName);
-  });
-
-  if (!existingGame) {
-    alert("Need to add game to change playtime");
-  } else {
-    // Find the index of the game with the specified name
-    let gameIndex = data.Game.findIndex((game) => game.Name === fileName);
-
-    let newPlaytime = prompt("How many hours do you have?") * 60 * 60;
-
-    data["Game"][gameIndex]["Playtime"] = newPlaytime;
-
-    postData(data);
-  }
+  postData(data);
 }
 
-function changeIcon(data) {
-  let fileName = document.getElementById("change-icon").files[0].name;
-  fileName = fileName.replace(".exe", "");
-  let existingGame = false;
+function changePlaytime(data, gameName) {
+  // Find the index of the game with the specified name
+  let gameIndex = data.Game.findIndex((game) => game.Name === gameName);
 
-  data["Game"].forEach((game) => {
-    if (fileName == game["Name"]) existingGame = true;
-    console.log(fileName);
-  });
+  let newPlaytime = document.getElementById("change-playtime").value * 3600;
 
-  if (!existingGame) {
-    alert("Need to add game to change playtime");
-  } else {
-    // Find the index of the game with the specified name
-    let gameIndex = data.Game.findIndex((game) => game.Name === fileName);
+  data["Game"][gameIndex]["Playtime"] = newPlaytime;
 
-    let newIconURL = prompt("What is the img url?");
+  postData(data);
+}
 
-    data["Game"][gameIndex]["IconURL"] = newIconURL;
+function changeIcon(data, gameName) {
+  // Find the index of the game with the specified name
+  let gameIndex = data.Game.findIndex((game) => game.Name === gameName);
 
-    postData(data);
-  }
+  let newPlaytime = document.getElementById("change-icon").value;
+
+  data["Game"][gameIndex]["IconURL"] = newPlaytime;
+
+  postData(data);
 }
