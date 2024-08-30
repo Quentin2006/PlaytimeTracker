@@ -66,6 +66,8 @@ body {
   width: 40px;
   height: auto;
   cursor: pointer;
+  background-color: rebeccapurple;
+  filter: brightness(500%);
 }
 .settings-icon img:hover {
   transform: scale(1.1);
