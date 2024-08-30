@@ -23,4 +23,5 @@
 
 9. make page auto update when inputting data
 
-10. change misc setting to be in a right click menu
+10. DONE change misc setting to be in a right click menu
+
