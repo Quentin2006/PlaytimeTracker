@@ -1,1 +1,36 @@
-{"Game":[{"Name":"GhostOfTsushima","IconURL":"https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/library_600x900_2x.jpg","Playtime":55455,"2024-08-22":244,"2024-08-23":6105,"2024-08-24":570,"2024-08-25":6957,"2024-08-26":2341,"2024-08-27":59,"2024-08-28":3860},{"Name":"Human","IconURL":"https://cdn.cloudflare.steamstatic.com/steam/apps/477160/library_600x900_2x.jpg?t=1718179840","Playtime":0},{"Name":"OuterWilds","IconURL":"https://cdn.cloudflare.steamstatic.com/steam/apps/753640/library_600x900_2x.jpg?t=1660850427","Playtime":67,"2024-08-28":67},{"Name":"sekiro","IconURL":"https://cdn.cloudflare.steamstatic.com/steam/apps/814380/library_600x900_2x.jpg?t=1678991240","Playtime":0},{"Name":"mcclauncher","IconURL":"https://cdn.cloudflare.steamstatic.com/steam/apps/976730/library_600x900_2x.jpg?t=1667946830","Playtime":0}]}
+{
+    "Game": [
+        {
+            "2024-08-22": 244,
+            "2024-08-23": 6105,
+            "2024-08-24": 570,
+            "2024-08-25": 6957,
+            "2024-08-26": 2341,
+            "2024-08-27": 59,
+            "2024-08-28": 3860,
+            "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/library_600x900_2x.jpg",
+            "Name": "GhostOfTsushima",
+            "Playtime": 55455
+        },
+        {
+            "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/477160/library_600x900_2x.jpg?t=1718179840",
+            "Name": "Human",
+            "Playtime": 0
+        },
+        {
+            "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/814380/library_600x900_2x.jpg?t=1678991240",
+            "Name": "sekiro",
+            "Playtime": 0
+        },
+        {
+            "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/976730/library_600x900_2x.jpg?t=1667946830",
+            "Name": "mcclauncher",
+            "Playtime": 0
+        },
+        {
+            "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/753640/library_600x900_2x.jpg?t=1660850427",
+            "Name": "OuterWilds",
+            "Playtime": 0
+        }
+    ]
+}
