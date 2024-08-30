@@ -13,6 +13,7 @@ body {
   align-items: center;
   justify-content: space-around;
 
+  gap: 25px;
   margin: 1em;
 }
 
@@ -29,6 +30,7 @@ body {
   transform: scale(1.025);
   filter: blur(0.5px) contrast(105%);
   backdrop-filter: blur(10px);
+  cursor: pointer;
 }
 
 .game-container div {
@@ -56,20 +58,18 @@ body {
   border-radius: 30px;
 }
 
-.settings-icon {
+.add-game {
   display: flex;
   justify-content: flex-end;
 }
 
-.settings-icon img {
+.add-game svg {
   margin: 10px;
   width: 40px;
   height: auto;
   cursor: pointer;
-  background-color: rebeccapurple;
-  filter: brightness(500%);
 }
-.settings-icon img:hover {
+.add-game svg:hover {
   transform: scale(1.1);
 }
 
@@ -107,15 +107,14 @@ body {
   font-size: 80px;
 }
 
-.header img {
+.header svg {
   margin: 10px;
   width: 40px;
   height: 40px;
   cursor: pointer;
-  filter: brightness(500%);
 }
 
-.header img:hover {
+.header svg:hover {
   transform: scale(1.1);
 }
 
@@ -131,7 +130,6 @@ body {
   font-size: 30px;
 }
 
-.add-game,
 .remove-game,
 .change-playtime,
 .change-icon {
@@ -151,7 +149,6 @@ body {
   cursor: pointer;
 }
 
-.add-game:hover,
 .remove-game:hover,
 .change-playtime:hover,
 .change-icon:hover {
