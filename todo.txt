@@ -19,6 +19,8 @@
 
 6. DONE Figure out how to make an overlay instead of linking to another page
 
-7. use flask server to send a request to update data.json
+7. DONE use flask server to send a request to update data.json
 
-8. use electron to make it a desktop app
+9. make page auto update when inputting data
+
+10. change misc setting to be in a right click menu
