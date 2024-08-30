@@ -11,14 +11,14 @@
 
 4. DONE auto create keys in data.json audomaticly
 
-5. Done add some misc settings
-    a. Done allow user to change game icon
+5. DONE add some misc settings
+    a. DONE allow user to change game icon
     b. DONE allow user to change playtime
     c. DONE allow user to remove games
     d. DONE allow user to select .exe they want to add
 
 6. DONE Figure out how to make an overlay instead of linking to another page
 
-7. figure out nodejs so i can change files without prompting user
+7. use flask server to send a request to update data.json
 
 8. use electron to make it a desktop app

@@ -1,5 +1,4 @@
 // Fetch the JSON file and handle the response
-
 fetch("./data.json")
   .then((response) => response.json())
   .then((data) => {
