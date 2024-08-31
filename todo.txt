@@ -21,11 +21,9 @@
 
 7. DONE use flask server to send a request to update data.json
 
-9. make page auto update when inputting data
+8. DONE change misc setting to be in a right click menu
 
-10. DONE change misc setting to be in a right click menu
-
-11. make page look better with css
+9. make page look better with css
     a. copy steam big picture mode
     b. make settings page display game name so you know what game your editing
     c. make input look better 
