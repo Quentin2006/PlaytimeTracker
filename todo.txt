@@ -24,9 +24,11 @@
 8. DONE change misc setting to be in a right click menu
 
 9. make page look better with css
-    a. copy steam big picture mode
-    b. make settings page display game name so you know what game your editing
-    c. make input look better 
-        1. add a button to confirm input 
-        2. make page refresh
-    d. make game icons smaller
+    a. DONE copy steam big picture mode
+    b. DONE make settings page display game name so you know what game your editing
+    c. DONE make input look better 
+    d. DONE make game icons smaller
+
+10. allow user to change the display name
+
+11. try and make the background hover effect thats in steam big picture mode
