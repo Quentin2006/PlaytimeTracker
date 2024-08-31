@@ -31,43 +31,20 @@
     <div id="overlay">
       <div id="text">
         <div class="header">
-          <div class="title">Settings</div>
-          <svg
-            onclick="off()"
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 -960 960 960"
-            width="24px"
-            fill="#e8eaed">
-            <path
-              d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
-          </svg>
+          <div class="title"></div>
         </div>
 
         <div class="content">
-          <div class="remove-game">
-            Remove game
-            <div class="warning" style="color: maroon">
-              WARNING: THIS WILL REMOVE ALL PLAYTIME PERMANENTLY
-            </div>
-          </div>
+          <div class="remove-game">Remove game</div>
 
-          <div class="change-playtime">
-            <label for="change-playtime">
-              what should the new playtime be (hrs)
-            </label>
-            <input type="text" name="change-playtime" id="change-playtime" />
-          </div>
+          <div class="change-playtime">Change playtime</div>
 
-          <div class="change-icon">
-            <label for="change-icon"> Find the url for the icon you would like to have </label>
-            <input type="text" name="change-icon" id="change-icon" />
-          </div>
+          <div class="change-icon">Change icon</div>
         </div>
       </div>
     </div>
 
-    <div class="game-container"></div>
+    <div class="game-container" oncontextmenu="return false;"></div>
 
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
   </body>

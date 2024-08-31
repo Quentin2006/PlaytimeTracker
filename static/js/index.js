@@ -9,20 +9,18 @@ fetch("http://127.0.0.1:5000/data-json", { method: "GET" })
     // checks if settings page should be launched
     document
       .querySelector(".game-container")
-      .addEventListener("click", (event) => {
-        if (event.target.tagName.toLowerCase() === "img") {
+      .addEventListener("contextmenu", (event) => {
+        if (
+          event.target.tagName.toLowerCase() === "img" ||
+          event.target.className === "placeholder"
+        ) {
           // Get the immediate parent of the clicked image (the child of the .game-container)
           let immediateParent = event.target.parentElement;
 
           let gameSelected = immediateParent.className;
 
-          console.log(
-            "Clicked on a grandchild image. Immediate parent class name:" +
-              gameSelected
-          );
-
           // truns on settings page
-          on();
+          on(gameSelected);
 
           // all settings to check for
           document
@@ -31,12 +29,12 @@ fetch("http://127.0.0.1:5000/data-json", { method: "GET" })
               removeGame(data, gameSelected);
             });
           document
-            .querySelector("#change-playtime")
+            .querySelector(".change-playtime")
             .addEventListener("click", () => {
               changePlaytime(data, gameSelected);
             });
           document
-            .querySelector("#change-icon")
+            .querySelector(".change-icon")
             .addEventListener("click", () => {
               changeIcon(data, gameSelected);
             });
@@ -59,10 +57,21 @@ function createImgs(data) {
     const gameContainer = document.createElement("div");
     gameContainer.className = className;
 
-    const content = document.createElement("img");
-    content.src = game["IconURL"];
+    if (game["IconURL"] == "") {
+      const content = document.createElement("div");
+      content.style.width = "350px";
+      content.style.height = "525px";
+      content.style.backgroundColor = "grey";
+      content.textContent = className;
+      content.src = game["IconURL"];
+      content.className = "placeholder";
+      gameContainer.appendChild(content);
+    } else {
+      const content = document.createElement("img");
+      content.src = game["IconURL"];
+      gameContainer.appendChild(content);
+    }
 
-    gameContainer.appendChild(content);
     mainContainer.appendChild(gameContainer);
   });
 }
@@ -107,13 +116,28 @@ function showData(data) {
   });
 }
 
-function on() {
+function on(gameName) {
   document.getElementById("overlay").style.display = "block";
+  document.querySelector(".title").textContent = gameName;
 }
 
 function off() {
   document.getElementById("overlay").style.display = "none";
 }
+
+// Event listener to detect clicks outside the overlay content
+document.addEventListener("click", function (event) {
+  const overlay = document.getElementById("overlay");
+  const settingsContent = document.getElementById("text");
+
+  // If the overlay is visible and the click is outside the settings content, close the overlay
+  if (
+    overlay.style.display === "block" &&
+    !settingsContent.contains(event.target)
+  ) {
+    off();
+  }
+});
 
 function postData(data) {
   fetch("http://127.0.0.1:5000/update-json", {
@@ -169,7 +193,7 @@ function changePlaytime(data, gameName) {
   // Find the index of the game with the specified name
   let gameIndex = data.Game.findIndex((game) => game.Name === gameName);
 
-  let newPlaytime = document.getElementById("change-playtime").value * 3600;
+  let newPlaytime = prompt("New playtime (hrs)") * 3600;
 
   data["Game"][gameIndex]["Playtime"] = newPlaytime;
 
@@ -180,9 +204,9 @@ function changeIcon(data, gameName) {
   // Find the index of the game with the specified name
   let gameIndex = data.Game.findIndex((game) => game.Name === gameName);
 
-  let newPlaytime = document.getElementById("change-icon").value;
+  let newIcon = prompt("Select the url of the new icon you want");
 
-  data["Game"][gameIndex]["IconURL"] = newPlaytime;
+  data["Game"][gameIndex]["IconURL"] = newIcon;
 
   postData(data);
 }
