@@ -25,6 +25,10 @@
 
 10. DONE change misc setting to be in a right click menu
 
-11. make page look better with css (try and copy steam big picture mode)
-
-12. make settings page feel more integradted
+11. make page look better with css
+    a. copy steam big picture mode
+    b. make settings page display game name so you know what game your editing
+    c. make input look better 
+        1. add a button to confirm input 
+        2. make page refresh
+    d. make game icons smaller
