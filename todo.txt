@@ -47,4 +47,6 @@
 
 17. allow user to input steam api key
 
-18. try and make the background hover effect thats in steam big picture mode
+18. if game wasnt played today, show last played data
+
+19. try and make the background hover effect thats in steam big picture mode
