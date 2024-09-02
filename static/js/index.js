@@ -76,6 +76,39 @@ function createImgs(data) {
   });
 }
 
+// used to dispaly last played 
+function formatDate(dateString) {
+  const date = new Date(dateString);
+
+  const year = date.getFullYear();
+
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const month = monthNames[date.getMonth()];
+
+  const day = date.getDate();
+
+  const ordinalSuffix = (n) => {
+    const s = ["th", "st", "nd", "rd"];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  };
+
+  return `${month} ${ordinalSuffix(day)}, ${year}`;
+}
+
 // Function to show additional game data like playtime
 function showData(data) {
   data["Game"].forEach((game) => {
@@ -101,17 +134,19 @@ function showData(data) {
         String(currentDate.getDate()).padStart(2, "0");
 
       const recentPlaytime = document.createElement("div");
-      recentPlaytime.textContent =
-        formattedDate in game
-          ? `Total Playtime Today: ${(game[formattedDate] / 60).toFixed(
-              0
-            )} mins`
-          : "You haven't played today";
+      if (formattedDate in game)
+        `Total Playtime Today: ${(game[formattedDate] / 60).toFixed(0)} mins`;
+      else {
+        console.log(game);
+        // -4 becuse there are three elemts after the recent playtime in the object
+        let lastPlayed = Object.keys(game)[Object.keys(game).length - 4];
+        if (lastPlayed != undefined)
+          recentPlaytime.textContent = "Last played: " + formatDate(lastPlayed);
+        else recentPlaytime.textContent = "Not yet played";
+      }
 
       gameInfoContainer.appendChild(recentPlaytime);
       gameContainer.appendChild(gameInfoContainer);
-    } else {
-      console.error(`Could not find element with class: ${className}`);
     }
   });
 }

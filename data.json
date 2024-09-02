@@ -1,6 +1,9 @@
 {
   "Game": [
     {
+      "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/library_600x900_2x.jpg?t=1716411353",
+      "Name": "GhostOfTsushima",
+      "Playtime": 60356,
       "2024-08-22": 244,
       "2024-08-23": 6105,
       "2024-08-24": 570,
@@ -10,9 +13,6 @@
       "2024-08-28": 3860,
       "2024-08-29": 1789,
       "2024-08-30": 2775,
-      "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/library_600x900_2x.jpg?t=1716411353",
-      "Name": "GhostOfTsushima",
-      "Playtime": 60356,
       "2024-08-31": 3836
     },
     {
@@ -21,15 +21,15 @@
       "Playtime": 0
     },
     {
-      "2024-08-29": 9,
       "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/814380/library_600x900_2x.jpg?t=1678991240",
       "Name": "sekiro",
-      "Playtime": 9
+      "Playtime": 17,
+      "2024-08-29": 9
     },
     {
       "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/976730/library_600x900_2x.jpg?t=1667946830",
       "Name": "mcclauncher",
-      "Playtime": 0
+      "Playtime": 7
     },
     {
       "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/753640/library_600x900_2x.jpg?t=1660850427",
