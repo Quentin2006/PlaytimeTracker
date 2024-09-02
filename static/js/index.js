@@ -76,7 +76,7 @@ function createImgs(data) {
   });
 }
 
-// used to dispaly last played 
+// used to dispaly last played
 function formatDate(dateString) {
   const date = new Date(dateString);
 
@@ -135,9 +135,10 @@ function showData(data) {
 
       const recentPlaytime = document.createElement("div");
       if (formattedDate in game)
-        `Total Playtime Today: ${(game[formattedDate] / 60).toFixed(0)} mins`;
+        recentPlaytime.textContent = `Playtime Today: ${(
+          game[formattedDate] / 60
+        ).toFixed(0)} mins`;
       else {
-        console.log(game);
         // -4 becuse there are three elemts after the recent playtime in the object
         let lastPlayed = Object.keys(game)[Object.keys(game).length - 4];
         if (lastPlayed != undefined)

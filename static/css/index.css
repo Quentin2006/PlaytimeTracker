@@ -28,7 +28,7 @@ body {
 }
 
 .game-container img:hover,
-.placeholder:hover  {
+.placeholder:hover {
   transform: scale(1.05);
   filter: blur(0.25px);
   cursor: pointer;
@@ -39,7 +39,7 @@ body {
   flex-flow: wrap column;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: rgb(212, 212, 212);
   border: none;
   border-radius: 6px;
   padding: 10px;
@@ -93,7 +93,7 @@ body {
   top: 50%;
   left: 50%;
   font-size: 50px;
-  color: white;
+  color: rgb(212, 212, 212);
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 
@@ -105,29 +105,21 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 80px;
+  font-size: 60px;
   font-weight: 300;
   font-size: 40px;
-  padding: 25px
+  padding: 25px;
 }
 
-.header svg {
-  margin: 10px;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
+.title {
+  font-size: 30px;
 }
 
 .header svg:hover {
   transform: scale(1.1);
 }
 
-.content {
-  background-color: #23262e;
-}
-
 #text .content {
-  padding: 0;
   gap: 0;
   margin: 0;
   font-weight: 200;
@@ -135,21 +127,35 @@ body {
 }
 
 .remove-game,
-.change-playtime,
-.change-icon {
+.content svg {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 25px;
+}
+
+.setting {
   padding: 30px;
+  padding-right: 100px;
   background-color: #23262e;
 }
 
 .add-game *,
-.remove-game,
-.change-playtime,
-.change-icon {
+.setting {
   cursor: pointer;
 }
 
-.remove-game:hover,
-.change-playtime:hover,
-.change-icon:hover {
+.setting:hover {
+  transition: 0.3s;
   background-color: #3d4450;
+}
+
+.cancel {
+  margin-top: 10px;
+}
+
+.remove-game:hover {
+  transition: 0.3s;
+  background-color: #6c2323;
 }
