@@ -28,27 +28,3 @@
     b. DONE make settings page display game name so you know what game your editing
     c. DONE make input look better 
     d. DONE make game icons smaller
-
-10. allow user to change the display name
-
-11. allow user to mark off completed games
-
-12. allow user to view more data about there playtime 
-    a. avg sesion length
-    b. time played in the past month, week, or specified time
-
-13. try and support use in emulators (IDK IF THIS IS POSSABLE)
-
-14. allow user to change icon size via 3 presets (small, medium, and large)
-
-15. allow user to sort game (playtime, alphabetically, recently played)
-
-16. allow user to favorite games (favorite games are always on top)
-
-17. allow user to input steam api key
-
-18. DONE if game wasnt played today, show last played data
-
-19. try and make the background hover effect thats in steam big picture mode
-
-20. add hover effect to add game displaying what is does
