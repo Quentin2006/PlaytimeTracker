@@ -6,6 +6,10 @@ fetch("http://127.0.0.1:5000/data-json", { method: "GET" })
     createImgs(data);
     showData(data);
 
+    document.querySelector("#add-game").addEventListener("input", () => {
+      addGame(data);
+    });
+
     // checks if settings page should be launched
     document
       .querySelector(".game-container")
@@ -23,6 +27,7 @@ fetch("http://127.0.0.1:5000/data-json", { method: "GET" })
           on(gameSelected);
 
           // all settings to check for
+
           document
             .querySelector(".remove-game")
             .addEventListener("click", () => {
@@ -106,7 +111,7 @@ function formatDate(dateString) {
     return n + (s[(v - 20) % 10] || s[v] || s[0]);
   };
 
-  return `${month} ${ordinalSuffix(day)}, ${year}`;
+  return `${month} ${ordinalSuffix(day)}`;
 }
 
 // Function to show additional game data like playtime
@@ -194,7 +199,8 @@ function postData(data) {
 }
 
 function addGame(data) {
-  let fileName = document.getElementById("add-game").files[0].name;
+  let fileInput = document.getElementById("add-game");
+  let fileName = fileInput.files[0].name;
   fileName = fileName.replace(".exe", "");
   let existingGame = false;
 
@@ -237,8 +243,12 @@ function changePlaytime(data, gameName) {
 }
 
 function changeIcon(data, gameName) {
+  gameName = gameName.replace("-", " ");
+
   // Find the index of the game with the specified name
   let gameIndex = data.Game.findIndex((game) => game.Name === gameName);
+
+  console.log(gameIndex);
 
   let newIcon = prompt("Select the url of the new icon you want");
 
