@@ -31,6 +31,7 @@ fetch("http://127.0.0.1:5000/data-json", { method: "GET" })
           document
             .querySelector(".remove-game")
             .addEventListener("click", () => {
+              console.log(gameSelected);
               removeGame(data, gameSelected);
             });
           document
@@ -62,10 +63,10 @@ function createImgs(data) {
     const gameContainer = document.createElement("div");
     gameContainer.className = className;
 
-    if (game["IconURL"] == "") {
+    if (game["IconURL"] == "None" || game["IconURL"] == "") {
       const content = document.createElement("div");
-      content.style.width = "350px";
-      content.style.height = "525px";
+      content.style.aspectRatio = "9/13.1";
+      content.style.width = "clamp(250px, 15vw, 400px)";
       content.style.backgroundColor = "grey";
       content.textContent = className;
       content.src = game["IconURL"];
@@ -196,6 +197,8 @@ function postData(data) {
     .catch((error) => {
       console.error("Error:", error);
     });
+
+  location.reload();
 }
 
 function addGame(data) {
@@ -223,6 +226,8 @@ function addGame(data) {
   }
 }
 function removeGame(data, gameName) {
+  gameName = gameName.replace("-", " ");
+
   // Find the index of the game with the specified name
   let gameIndex = data.Game.findIndex((game) => game.Name === gameName);
 
