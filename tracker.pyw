@@ -4,6 +4,7 @@ from datetime import datetime
 import json
 from secret import api_key
 from steam_web_api import Steam
+import re
 
 INCREMENT_VAR = 1       # Time increment in seconds, the higher the # the better the performance 
 
@@ -27,16 +28,20 @@ game_names = getGameNames()
 def main():
     global game_names
     # updates game img url, only needed to run once at the start
-    while True:             
+    while True:
         time.sleep(INCREMENT_VAR)
         game_names = getGameNames()
+        # checks if game img is there, if not, it updates it
+        update_game_img(game_names)
         # retrives all current running game
         running_games = get_running_games()
         for running_game in running_games:
             # checks if json game data is there
             create_json(running_game)
-            # updates json file
+
             update_json(running_game)
+
+
             
 # returns a list of running games
 def get_running_games():
@@ -88,16 +93,23 @@ def update_delta_playtime(running_game):
 # gets urls for game img
 def getURLs(game):
     steam = Steam(api_key)
-    imgURLs = []
     try:
-        for game in game_names:
-            output = steam.apps.search_games(game)
-            id = output["apps"][0]["id"][0]
-            imgURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + str(id) + "/library_600x900_2x.jpg"
-            imgURLs.append(imgURL)
-        return(imgURLs)
+        output = steam.apps.search_games(game)
+        id = output["apps"][0]["id"][0]
+        print(id)
+        imgURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + str(id) + "/library_600x900_2x.jpg"
+        return imgURL
+
+    except IndexError:
+        newString = re.sub(r'(?<!^)(?=[A-Z])', ' ', game)
+        output = steam.apps.search_games(newString)
+        id = output["apps"][0]["id"][0]
+        print(id)
+        imgURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + str(id) + "/library_600x900_2x.jpg"
+        return imgURL
     except:
         return "None"
+
     
 
 # updates json responsable for storing all playtime data
@@ -109,17 +121,6 @@ def update_json(running_game):
     data = json.load(json_file)
 
     index = game_names.index(running_game)
-
-    if not data['Game'][index]['Name']:
-        data['Game'][index]['Name'] = running_game
-        with open('data.json', 'w') as file:
-            json.dump(data, file, indent=2)
-
-    if not data['Game'][index]['IconURL']:
-        data['Game'][index]['IconURL'] = getURLs(running_game)[index]
-        with open('data.json', 'w') as file:    
-            json.dump(data, file, indent=2)
-
     
     data['Game'][index]['Playtime'] = update_playtime(running_game)
     with open('data.json', 'w') as file:
@@ -132,6 +133,23 @@ def update_json(running_game):
     with open('data.json', 'w') as file:
         json.dump(data, file, indent=2)
 
+def update_game_img(game_names):
+    # Opens json file
+    json_file = open('data.json')
+
+    # converts json file into a dict
+    data = json.load(json_file)
+
+    for game in game_names:
+
+        index = game_names.index(game)
+
+        if data['Game'][index]['IconURL'] == "":
+            data['Game'][index]['IconURL'] = getURLs(game)
+
+            with open('data.json', 'w') as file:    
+                json.dump(data, file, indent=2)
+    
 # if there is no json in file then it makes json entry for game
 def create_json(running_game):
     # Opens json file
@@ -153,4 +171,3 @@ def create_json(running_game):
         json.dump(data, file, indent=2)
 
 main()
-        
