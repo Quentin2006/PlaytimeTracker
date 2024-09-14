@@ -37,8 +37,12 @@
 
 13. add better data visuilization using chart js
 
-14. allow user to change game display name
+14. allow user to change exe name, incase file exe isnt name of running task
 
 15. DONE make app not close when closing UI
 
 16. add a refresh button in top left corrner
+
+17. update taskbar icon
+
+18. add settings page in bottem left corrner
