@@ -40,3 +40,5 @@
 14. allow user to change game display name
 
 15. DONE make app not close when closing UI
+
+16. add a refresh button in top left corrner
