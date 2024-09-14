@@ -29,5 +29,12 @@
     c. DONE make input look better 
     d. DONE make game icons smaller
 
-10. Make it a desktop app
+10. DONE Make it a desktop app
 
+11. make app launch in app tray at startup and make minimized by default. 
+
+12. allow user to add steam api key.
+
+13. add better data visuilization using chart js
+
+14. allow user to change game display name
