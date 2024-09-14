@@ -28,3 +28,6 @@
     b. DONE make settings page display game name so you know what game your editing
     c. DONE make input look better 
     d. DONE make game icons smaller
+
+10. Make it a desktop app
+
