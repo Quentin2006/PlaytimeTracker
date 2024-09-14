@@ -1,7 +1,6 @@
 import os
 from flask import Flask, render_template, request, jsonify
 import json
-from flaskwebgui import FlaskUI
 
 app = Flask(__name__)
 
@@ -26,6 +25,6 @@ def update_json():
 
     return jsonify(new_data)  # Return the new data as a response
 
-def main():
-    FlaskUI(app=app, server="flask", width=1600, height=900, port=5000, browser_path="C:\Program Files\Google\Chrome\Application\chrome.exe").run()
+if __name__ == "__main__":
+    app.run(debug=True)
 
