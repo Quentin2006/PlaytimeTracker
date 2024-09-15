@@ -41,8 +41,8 @@
 
 15. DONE make app not close when closing UI
 
-16. add a refresh button in top left corrner
+16. DONE add a refresh button in top left corrner
 
 17. update taskbar icon
 
-18. add settings page in bottem left corrner
+18. DONE add settings page in bottem left corrner

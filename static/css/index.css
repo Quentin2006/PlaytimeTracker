@@ -70,13 +70,13 @@ body {
   align-items: center;
 }
 
-.header-button svg {
+.button svg {
   margin: 10px;
   width: 40px;
   height: auto;
   cursor: pointer;
 }
-.header-button svg:hover {
+.button svg:hover {
   transform: scale(1.1);
 }
 
@@ -164,4 +164,12 @@ body {
 .remove-game:hover {
   transition: 0.3s;
   background-color: #6c2323;
+}
+
+/* Footer */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
