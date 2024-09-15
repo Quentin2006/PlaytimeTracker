@@ -8,7 +8,7 @@ from threading import Thread, Event
 stop_event = Event()
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-IMG_FILE_PATH = os.path.join(BASE_DIR, 'clock.webp')
+IMG_FILE_PATH = os.path.join(BASE_DIR, 'icon.webp')
 
 image = PIL.Image.open(IMG_FILE_PATH)
 
