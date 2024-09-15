@@ -5,7 +5,7 @@ import json
 app = Flask(__name__)
 
 # Get the directory where this script is located
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_FILE_PATH = os.path.join(BASE_DIR, 'data.json')
 
 @app.route('/')

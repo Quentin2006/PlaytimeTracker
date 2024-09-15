@@ -2,13 +2,24 @@ import pystray
 import PIL.Image
 import webview
 import os
-from app import app
+import sys
 from threading import Thread, Event
+
+# Get the parent directory of the 'modules' folder
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODULES_DIR = os.path.join(BASE_DIR, 'modules')
+
+# Add the 'modules' directory to sys.path
+sys.path.append(MODULES_DIR)
+
+
+from app import app
+
 
 stop_event = Event()
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-IMG_FILE_PATH = os.path.join(BASE_DIR, 'icon.webp')
+IMG_FILE_PATH = os.path.join(BASE_DIR, 'modules/static/icon.png')
 
 image = PIL.Image.open(IMG_FILE_PATH)
 
