@@ -170,6 +170,6 @@ body {
 
 .footer {
   position: absolute;
-  bottom: calc(1vh - 15px);
+  bottom: calc(1vh - 10px);
   left: auto;
 }
