@@ -38,6 +38,12 @@
       "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/386940/library_600x900_2x.jpg",
       "Name": "UltimateChickenHorse",
       "Playtime": 0
+    },
+    {
+      "Name": "JediSurvivor",
+      "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/1774580/library_600x900_2x.jpg",
+      "Playtime": 45,
+      "2024-09-16": 45
     }
   ]
 }

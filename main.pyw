@@ -34,7 +34,7 @@ def on_clicked(icon, item):
     if str(item) == "Exit":
         icon.stop()
     elif str(item) == "Open":
-        webview.create_window('Playtime Tracker', f"{host}:{port}", width=1600, height=900, background_color='#000000')
+        webview.create_window('Playtime Tracker', f"{host}:{port}", width=1600, height=900, background_color='#000000', easy_drag=True, frameless=True, shadow=True)
         webview.start()
 
 icon = pystray.Icon("Playtime Tracker", image, menu=pystray.Menu(
