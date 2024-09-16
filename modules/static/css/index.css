@@ -169,7 +169,7 @@ body {
 /* Footer */
 
 .footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  position: absolute;
+  bottom: calc(1vh - 15px);
+  left: auto;
 }
