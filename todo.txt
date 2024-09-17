@@ -33,16 +33,25 @@
 
 11. DONE make app launch in app tray at startup and make minimized by default. 
 
-12. allow user to add steam api key.
-
-13. add better data visuilization using chart js
-
-14. allow user to change exe name, incase file exe isnt name of running task
-
 15. DONE make app not close when closing UI
 
 16. DONE add a refresh button in top left corrner
 
-17. update taskbar icon
+17. DONE update taskbar icon
 
 18. DONE add settings page in bottem left corrner
+
+
+
+
+19. allow user to search for games 
+
+12. allow user to add steam api key.
+
+13. add better data visuilization using chart js
+
+14. allow user to change game display naem
+
+15. allow user to filter favorite game, in progress games, games with most playtime, alphebeticaly
+
+16. allow user to favorite games

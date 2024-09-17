@@ -19,10 +19,10 @@
       "2024-09-12": 3916,
       "2024-09-13": 3561,
       "2024-09-14": 1675,
-      "2024-09-16": 11,
+      "2024-09-16": 48,
       "ExeName": "GhostOfTsushima",
       "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/library_600x900_2x.jpg?t=1716411353",
-      "Playtime": 72776,
+      "Playtime": 72813,
       "RealName": "Ghost of Tsushima DIRECTOR'S CUT"
     },
     {
@@ -45,17 +45,11 @@
       "RealName": "Ultimate Chicken Horse"
     },
     {
-      "2024-09-16": 45,
+      "2024-09-16": 97,
       "ExeName": "JediSurvivor",
       "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/1774580/library_600x900_2x.jpg",
-      "Playtime": 59,
+      "Playtime": 111,
       "RealName": "STAR WARS Jedi: Survivor\u2122"
-    },
-    {
-      "ExeName": "python-3126-amd64",
-      "RealName": "None",
-      "IconURL": "None",
-      "Playtime": 0
     }
   ]
 }
