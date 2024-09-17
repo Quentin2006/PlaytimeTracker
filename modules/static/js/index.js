@@ -58,7 +58,7 @@ function createImgs(data) {
   // Loop through each game in the JSON data
   data["Game"].forEach((game) => {
     // Sanitize class names (replace spaces with hyphens)
-    const className = game["Name"].replace(/\s+/g, "-");
+    const className = game["ExeName"].replace(/\s+/g, "-");
 
     const gameContainer = document.createElement("div");
     gameContainer.className = className;
@@ -118,7 +118,7 @@ function formatDate(dateString) {
 // Function to show additional game data like playtime
 function showData(data) {
   data["Game"].forEach((game) => {
-    const className = "." + game["Name"].replace(/\s+/g, "-");
+    const className = "." + game["ExeName"].replace(/\s+/g, "-");
     const gameContainer = document.querySelector(className);
 
     if (gameContainer) {
@@ -216,7 +216,7 @@ function addGame(data) {
     alert("Game already incuded");
   } else {
     let newData = {
-      Name: fileName
+      ExeName: fileName
     };
     data.Game.push(newData);
 
@@ -236,7 +236,7 @@ function removeGame(data, gameName) {
 
 function changePlaytime(data, gameName) {
   // Find the index of the game with the specified name
-  let gameIndex = data.Game.findIndex((game) => game.Name === gameName);
+  let gameIndex = data.Game.findIndex((game) => game.ExeName === gameName);
 
   let newPlaytime = prompt("New playtime (hrs)") * 3600;
 
