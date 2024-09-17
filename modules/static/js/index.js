@@ -65,8 +65,8 @@ function createImgs(data) {
 
     if (game["IconURL"] == "None" || game["IconURL"] == "") {
       const content = document.createElement("div");
-      content.style.aspectRatio = "9/13.1";
-      content.style.width = "clamp(250px, 15vw, 400px)";
+      content.style.width = "235px";
+      content.style.height = "352.5px";
       content.style.backgroundColor = "grey";
       content.textContent = className;
       content.src = game["IconURL"];
@@ -145,8 +145,9 @@ function showData(data) {
           game[formattedDate] / 60
         ).toFixed(0)} mins`;
       else {
-        // -4 becuse there are three elemts after the recent playtime in the object
-        let lastPlayed = Object.keys(game)[Object.keys(game).length - 4];
+        // -5 becuse there are three elemts after the recent playtime in the object
+        let lastPlayed = Object.keys(game)[Object.keys(game).length - 5];
+
         if (lastPlayed != undefined)
           recentPlaytime.textContent = "Last played: " + formatDate(lastPlayed);
         else recentPlaytime.textContent = "Not yet played";
@@ -216,7 +217,7 @@ function addGame(data) {
     alert("Game already incuded");
   } else {
     let newData = {
-      ExeName: fileName
+      ExeName: fileName,
     };
     data.Game.push(newData);
 
