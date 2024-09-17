@@ -208,7 +208,7 @@ function addGame(data) {
   let existingGame = false;
 
   data["Game"].forEach((game) => {
-    if (fileName == game["Name"]) existingGame = true;
+    if (fileName == game["ExeName"]) existingGame = true;
     console.log(fileName);
   });
 
@@ -216,9 +216,7 @@ function addGame(data) {
     alert("Game already incuded");
   } else {
     let newData = {
-      Name: fileName,
-      IconURL: "",
-      Playtime: 0,
+      Name: fileName
     };
     data.Game.push(newData);
 

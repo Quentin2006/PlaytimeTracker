@@ -20,30 +20,36 @@
       "2024-09-13": 3561,
       "2024-09-14": 1675,
       "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/library_600x900_2x.jpg?t=1716411353",
-      "Name": "GhostOfTsushima",
-      "Playtime": 72765
+      "ExeName": "GhostOfTsushima",
+      "Playtime": 72776,
+      "RealName": "Ghost of Tsushima DIRECTOR'S CUT",
+      "2024-09-16": 11
     },
     {
       "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/285900/library_600x900_2x.jpg?t=1639479369",
-      "Name": "Gang Beasts",
-      "Playtime": 0
+      "ExeName": "Gang Beasts",
+      "Playtime": 0,
+      "RealName": "Gang Beasts"
     },
     {
       "2024-09-14": 21,
       "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/535520/library_600x900_2x.jpg?t=1574370751",
-      "Name": "Nidhogg_2",
-      "Playtime": 21
+      "ExeName": "Nidhogg_2",
+      "Playtime": 21,
+      "RealName": "Nidhogg 2"
     },
     {
       "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/386940/library_600x900_2x.jpg",
-      "Name": "UltimateChickenHorse",
-      "Playtime": 0
+      "ExeName": "UltimateChickenHorse",
+      "Playtime": 0,
+      "RealName": "Ultimate Chicken Horse"
     },
     {
-      "Name": "JediSurvivor",
+      "2024-09-16": 45,
       "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/1774580/library_600x900_2x.jpg",
+      "ExeName": "JediSurvivor",
       "Playtime": 45,
-      "2024-09-16": 45
+      "RealName": "STAR WARS Jedi: Survivor\u2122"
     }
   ]
 }

@@ -13,7 +13,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_FILE_PATH = os.path.join(BASE_DIR, 'data.json')
 
 
-def getGameNames():
+
+
+
+
+def getExeNames():
     # Load the JSON data from the file
     with open(DATA_FILE_PATH, 'r') as file:
         data = json.load(file)
@@ -23,31 +27,37 @@ def getGameNames():
 
     # Iterate through each game in the JSON data and add the game name to the list
     for game in data['Game']:
-        game_names.append(game['Name'])
+        game_names.append(game['ExeName'])
 
     return game_names
 
 
-game_names = getGameNames()
+
+
+
 
 def main():
     global game_names
     # updates game img url, only needed to run once at the start
+
     while True:
         time.sleep(INCREMENT_VAR)
-        game_names = getGameNames()
-        # checks if game img is there, if not, it updates it
-        update_game_img(game_names)
-        # retrives all current running game
-        running_games = get_running_games()
-        for running_game in running_games:
+
+        game_names = getExeNames()
+
+        UpdateJsonEntry(game_names)
+        
+        # only used to update games taht a running
+        for running_game in get_running_games():
             # checks if json game data is there
-            create_json(running_game)
-
-            update_json(running_game)
+            updatePlaytime(running_game)
 
 
-            
+
+
+
+
+
 # returns a list of running games
 def get_running_games():
     running_games = set()
@@ -57,6 +67,10 @@ def get_running_games():
             if process_name == game + ".exe":
                 running_games.add(game)
     return running_games
+
+
+
+
 
 
 # creates, and updates file with playtime
@@ -69,6 +83,10 @@ def update_playtime(running_game):
     
     playtime = (int(data['Game'][game_names.index(running_game)]['Playtime']) + INCREMENT_VAR)
     return playtime
+
+
+
+
 
 
 # creates file holding playtime for the day 
@@ -95,84 +113,108 @@ def update_delta_playtime(running_game):
     return delta_playtime
 
 
-# gets urls for game img
-def getURLs(game):
+
+# input game name, returns object of game info
+# {'id': arr of int, 'link': str, 'name': str, 'img': str, 'price': str}
+def getGameSteamGameInfo(game):
     steam = Steam(api_key)
+    # tries defalt exe name
     try:
         output = steam.apps.search_games(game)
-        id = output["apps"][0]["id"][0]
-        print(id)
-        imgURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + str(id) + "/library_600x900_2x.jpg"
-        return imgURL
+        id = output["apps"][0]
+        return id
 
+    # handles IndexError (empty list)
     except IndexError:
+        print("IndexError occurred with default name.")  # Log for debugging
+
+        # adds spaces after every capital letter
         newString = re.sub(r'(?<!^)(?=[A-Z])', ' ', game)
-        output = steam.apps.search_games(newString)
-        id = output["apps"][0]["id"][0]
-        print(id)
-        imgURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + str(id) + "/library_600x900_2x.jpg"
+        try:
+            output = steam.apps.search_games(newString)
+            id = output["apps"][0]  # Potential IndexError or KeyError
+            return id
+        except IndexError:
+            print("IndexError occurred again after modifying game name.")
+            return "None"
+
+
+
+# Returns format to find steam url using SteamGridDB.com
+def getURLs(game):
+
+    if getGameSteamGameInfo(game) != "None":
+        imgURL = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + str(getGameSteamGameInfo(game)["id"][0]) + "/library_600x900_2x.jpg"
         return imgURL
-    except:
-        return "None"
-
     
+    else: return getGameSteamGameInfo(game)
 
-# updates json responsable for storing all playtime data
-def update_json(running_game):
+
+
+# Returns Game name according to steam
+def getGameName(game):
+    
+    if getGameSteamGameInfo(game) != "None":
+        return getGameSteamGameInfo(game)["name"]
+    
+    else: return getGameSteamGameInfo(game)
+
+
+
+# updates json playtime data
+def updatePlaytime(game):
     # Opens json file
     json_file = open(DATA_FILE_PATH)
 
     # converts json file into a dict
     data = json.load(json_file)
 
-    index = game_names.index(running_game)
+    index = game_names.index(game)
     
-    data['Game'][index]['Playtime'] = update_playtime(running_game)
+    data['Game'][index]['Playtime'] = update_playtime(game)
     with open(DATA_FILE_PATH, 'w') as file:
         json.dump(data, file, indent=2)
 
     # current date
     today = datetime.today().strftime('%Y-%m-%d')
     
-    data['Game'][index][today] = update_delta_playtime(running_game)
+    data['Game'][index][today] = update_delta_playtime(game)
     with open(DATA_FILE_PATH, 'w') as file:
         json.dump(data, file, indent=2)
 
-def update_game_img(game_names):
+
+# if there is no json in file, 
+def UpdateJsonEntry(gameNames):
     # Opens json file
     json_file = open(DATA_FILE_PATH)
 
     # converts json file into a dict
     data = json.load(json_file)
 
-    for game in game_names:
+    index = 0
+    for game in gameNames:
+        
+        # no need to check for name, its allways given
 
-        index = game_names.index(game)
+        if 'RealName' not in data['Game'][index]:
+            data['Game'][index]['RealName'] = getGameName(game)
 
-        if data['Game'][index]['IconURL'] == "":
+            with open(DATA_FILE_PATH, 'w') as file:    
+                json.dump(data, file, indent=2)
+
+        if 'IconURL' not in data['Game'][index]:
             data['Game'][index]['IconURL'] = getURLs(game)
 
             with open(DATA_FILE_PATH, 'w') as file:    
                 json.dump(data, file, indent=2)
-    
-# if there is no json in file then it makes json entry for game
-def create_json(running_game):
-    # Opens json file
-    json_file = open(DATA_FILE_PATH)
+        
+        if 'Playtime' not in data['Game'][index]:
+            data['Game'][index]['Playtime'] = 0
 
-    # converts json file into a dict
-    data = json.load(json_file)
+            with open(DATA_FILE_PATH, 'w') as file:    
+                json.dump(data, file, indent=2)
 
-    index = game_names.index(running_game)
+        index += 1
 
-    if index >= len(data['Game']):
-        newData = {
-            "Name": running_game,
-            "IconURL": "",
-            "Playtime": 0
-        }
-        data['Game'].append(newData)
-    with open(DATA_FILE_PATH, 'w') as file:
-        json.dump(data, file, indent=2)
 
 main()
