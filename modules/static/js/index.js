@@ -21,10 +21,20 @@ fetch("http://127.0.0.1:5000/data-json", { method: "GET" })
           // Get the immediate parent of the clicked image (the child of the .game-container)
           let immediateParent = event.target.parentElement;
 
-          let gameSelected = immediateParent.className;
+          let gameName = immediateParent.className;
 
-          // truns on settings page
-          on(gameSelected);
+          gameName = gameName.replace("-", " ");
+
+          console.log(gameName);
+
+          let gameIndex = data.Game.findIndex((game) => game.ExeName === gameName);
+
+          console.log(gameIndex);
+
+
+          if (data["Game"][gameIndex]["RealName"])
+            on(data["Game"][gameIndex]["RealName"]);
+          else on(data["Game"][gameIndex]["Exeame"]);
 
           // all settings to check for
 
@@ -228,7 +238,7 @@ function removeGame(data, gameName) {
   gameName = gameName.replace("-", " ");
 
   // Find the index of the game with the specified name
-  let gameIndex = data.Game.findIndex((game) => game.Name === gameName);
+  let gameIndex = data.Game.findIndex((game) => game.ExeName === gameName);
 
   data.Game.splice(gameIndex, 1);
 
@@ -250,7 +260,7 @@ function changeIcon(data, gameName) {
   gameName = gameName.replace("-", " ");
 
   // Find the index of the game with the specified name
-  let gameIndex = data.Game.findIndex((game) => game.Name === gameName);
+  let gameIndex = data.Game.findIndex((game) => game.ExeName === gameName);
 
   console.log(gameIndex);
 
