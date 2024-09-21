@@ -27,10 +27,11 @@ fetch("http://127.0.0.1:5000/data-json", { method: "GET" })
 
           console.log(gameName);
 
-          let gameIndex = data.Game.findIndex((game) => game.ExeName === gameName);
+          let gameIndex = data.Game.findIndex(
+            (game) => game.ExeName === gameName
+          );
 
           console.log(gameIndex);
-
 
           if (data["Game"][gameIndex]["RealName"])
             on(data["Game"][gameIndex]["RealName"]);
@@ -41,18 +42,17 @@ fetch("http://127.0.0.1:5000/data-json", { method: "GET" })
           document
             .querySelector(".remove-game")
             .addEventListener("click", () => {
-              console.log(gameSelected);
-              removeGame(data, gameSelected);
+              removeGame(data, gameName);
             });
           document
             .querySelector(".change-playtime")
             .addEventListener("click", () => {
-              changePlaytime(data, gameSelected);
+              changePlaytime(data, gameName);
             });
           document
             .querySelector(".change-icon")
             .addEventListener("click", () => {
-              changeIcon(data, gameSelected);
+              changeIcon(data, gameName);
             });
         }
       });
@@ -269,4 +269,11 @@ function changeIcon(data, gameName) {
   data["Game"][gameIndex]["IconURL"] = newIcon;
 
   postData(data);
+}
+
+function displaySettingsPage() {
+  document.getElementById("settings-page").style.display = "block";
+}
+function stopDisplaySettingsPage() {
+  document.getElementById("settings-page").style.display = "hidden";
 }

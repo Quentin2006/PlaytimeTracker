@@ -55,3 +55,5 @@
 15. allow user to filter favorite game, in progress games, games with most playtime, alphebeticaly
 
 16. allow user to favorite games
+
+17. add a restart button in system tray
