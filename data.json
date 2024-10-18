@@ -1,55 +1,29 @@
 {
-  "Game": [
-    {
-      "2024-08-22": 244,
-      "2024-08-23": 6105,
-      "2024-08-24": 570,
-      "2024-08-25": 6957,
-      "2024-08-26": 2341,
-      "2024-08-27": 59,
-      "2024-08-28": 3860,
-      "2024-08-29": 1789,
-      "2024-08-30": 2775,
-      "2024-08-31": 3836,
-      "2024-09-01": 17,
-      "2024-09-02": 15,
-      "2024-09-03": 1303,
-      "2024-09-05": 202,
-      "2024-09-08": 1720,
-      "2024-09-12": 3916,
-      "2024-09-13": 3561,
-      "2024-09-14": 1675,
-      "2024-09-16": 48,
-      "ExeName": "GhostOfTsushima",
-      "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/library_600x900_2x.jpg?t=1716411353",
-      "Playtime": 72813,
-      "RealName": "Ghost of Tsushima DIRECTOR'S CUT"
-    },
-    {
-      "ExeName": "Gang Beasts",
-      "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/285900/library_600x900_2x.jpg?t=1639479369",
-      "Playtime": 0,
-      "RealName": "Gang Beasts"
-    },
-    {
-      "2024-09-14": 21,
-      "ExeName": "Nidhogg_2",
-      "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/535520/library_600x900_2x.jpg?t=1574370751",
-      "Playtime": 21,
-      "RealName": "Nidhogg 2"
-    },
-    {
-      "ExeName": "UltimateChickenHorse",
-      "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/386940/library_600x900_2x.jpg",
-      "Playtime": 0,
-      "RealName": "Ultimate Chicken Horse"
-    },
-    {
-      "2024-09-16": 97,
-      "ExeName": "JediSurvivor",
-      "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/1774580/library_600x900_2x.jpg",
-      "Playtime": 111,
-      "RealName": "STAR WARS Jedi: Survivor\u2122"
-    }
-  ]
+    "Game": [
+        {
+            "2024-08-22": 244,
+            "2024-08-23": 6105,
+            "2024-08-24": 570,
+            "2024-08-25": 6957,
+            "2024-08-26": 2341,
+            "2024-08-27": 59,
+            "2024-08-28": 3860,
+            "2024-08-29": 1789,
+            "2024-08-30": 2775,
+            "2024-08-31": 3836,
+            "2024-09-01": 17,
+            "2024-09-02": 15,
+            "2024-09-03": 1303,
+            "2024-09-05": 202,
+            "2024-09-08": 1720,
+            "2024-09-12": 3916,
+            "2024-09-13": 3561,
+            "2024-09-14": 1675,
+            "2024-09-16": 48,
+            "ExeName": "GhostOfTsushima",
+            "IconURL": "https://cdn.cloudflare.steamstatic.com/steam/apps/2215430/library_600x900_2x.jpg?t=1716411353",
+            "Playtime": 90813,
+            "RealName": "Ghost of Tsushima DIRECTOR'S CUT"
+        }
+    ]
 }

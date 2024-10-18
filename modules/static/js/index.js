@@ -10,6 +10,10 @@ fetch("http://127.0.0.1:5000/data-json", { method: "GET" })
       addGame(data);
     });
 
+    document.querySelector(".input").addEventListener("input", () => {
+      search(data);
+    });
+
     // checks if settings page should be launched
     document
       .querySelector(".game-container")
@@ -276,4 +280,16 @@ function displaySettingsPage() {
 }
 function stopDisplaySettingsPage() {
   document.getElementById("settings-page").style.display = "hidden";
+}
+
+function search(data) {
+  let query = document.getElementsByClassName("input")[0].value;
+  let objLen = Object.keys(data["Game"]).length
+  let index;
+  for (let index = 0; index < objLen; index++)    
+    game = data["Game"][index]["RealName"];
+    console.log(index)
+    console.log(game)
+  
+    
 }

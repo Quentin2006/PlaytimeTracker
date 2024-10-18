@@ -43,6 +43,9 @@
 
 
 
+20. add a way for the user to select a new exe
+
+21. move data.json into a folder called backup
 
 19. allow user to search for games 
 
@@ -50,10 +53,8 @@
 
 13. add better data visuilization using chart js
 
-14. allow user to change game display naem
-
-15. allow user to filter favorite game, in progress games, games with most playtime, alphebeticaly
-
-16. allow user to favorite games
+14. allow user to change game display naem if not alreay given
 
 17. add a restart button in system tray
+
+22. fix bug that deltes all games data
